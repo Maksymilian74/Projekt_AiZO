@@ -61,6 +61,12 @@ build CMakeFiles/Projekt_AiZO.dir/Menu.cpp.obj: CXX_COMPILER__Projekt_AiZO_unsca
   OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
   OBJECT_FILE_DIR = CMakeFiles\Projekt_AiZO.dir
 
+build CMakeFiles/Projekt_AiZO.dir/TestSorting.cpp.obj: CXX_COMPILER__Projekt_AiZO_unscanned_Debug C$:/Users/szewc/CLionProjects/Projekt_AiZO/TestSorting.cpp || cmake_object_order_depends_target_Projekt_AiZO
+  DEP_FILE = CMakeFiles\Projekt_AiZO.dir\TestSorting.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
+  OBJECT_FILE_DIR = CMakeFiles\Projekt_AiZO.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Projekt_AiZO
@@ -69,7 +75,7 @@ build CMakeFiles/Projekt_AiZO.dir/Menu.cpp.obj: CXX_COMPILER__Projekt_AiZO_unsca
 #############################################
 # Link the executable Projekt_AiZO.exe
 
-build Projekt_AiZO.exe: CXX_EXECUTABLE_LINKER__Projekt_AiZO_Debug CMakeFiles/Projekt_AiZO.dir/Main.cpp.obj CMakeFiles/Projekt_AiZO.dir/Menu.cpp.obj
+build Projekt_AiZO.exe: CXX_EXECUTABLE_LINKER__Projekt_AiZO_Debug CMakeFiles/Projekt_AiZO.dir/Main.cpp.obj CMakeFiles/Projekt_AiZO.dir/Menu.cpp.obj CMakeFiles/Projekt_AiZO.dir/TestSorting.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
