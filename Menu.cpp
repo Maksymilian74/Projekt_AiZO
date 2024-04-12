@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "TestSorting.h"
 #include <iostream>
 
 using namespace std;
@@ -7,29 +8,40 @@ void Menu::runMainMenu() {
     int number;
     int test;
     int simulation;
+    int sorting;
+    TestSorting* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
+
     do {
         number = displayMainMenu();
 
         switch (number) {
             case 1:
                 cout << "Tryb pracy testowej\n";
+                // Utworzenie obiektu klasy TestSorting
+                testSorting = new TestSorting();
                 do {
                     test = displayTestingMenu();
                     switch (test) {
                         case 1:
                             cout << "Wczytanie danych z pliku\n";
+                            testSorting->loadDataFromFile();
                             break;
                         case 2:
                             cout << "Zaladowanie losowych danych\n";
+                            testSorting->loadRandomData();
                             break;
                         case 3:
                             cout << "Wykonanie sortowania\n";
+                            sorting = displaySortingMenu();
+                            testSorting->sort();
                             break;
                         case 4:
                             cout << "Wypisanie danych w tablicy\n";
+                            testSorting->displayArray();
                             break;
                         case 5:
                             cout << "Zapisanie danych do pliku\n";
+                            testSorting->saveDataToFile();
                             break;
                         case 6:
                             cout << "Powrot do glownego menu\n";
@@ -39,6 +51,8 @@ void Menu::runMainMenu() {
                             break;
                     }
                 } while(test != 6);
+                delete testSorting;  //Usuniecie obiektu TestSorting
+                testSorting = nullptr; //Ustawienie wskaźnika na nullptr
                 break;
             case 2:
                 cout << "Tryb pracy badawczej\n";
@@ -116,6 +130,25 @@ int Menu::displaySimulationMenu() {
     cout << "4. Wypisanie danych w tablicy      \n";
     cout << "5. Zapisanie danych do pliku       \n";
     cout << "6. Wyjscie do menu glownego        \n";
+    cout << "Wpisz numer zadania: ";
+    cin >> task;
+    return task;
+}
+
+int Menu::displaySortingMenu() {
+    int task;
+    cout << "---------------------------------- \n";
+    cout << "       --- Sorting Menu ---        \n";
+    cout << "1.  Sortowanie przez wstawianie    \n";
+    cout << "2.  Sortowanie przez kopcowanie    \n";
+    cout << "3.  Sortowanie Shella (I wariant)  \n";
+    cout << "4.  Sortowanie Shella (II wariant) \n";
+    cout << "5.  Quicksort (pivot lewy)         \n";
+    cout << "6.  Quicksort (pivot prawy)        \n";
+    cout << "7.  Quicksort (pivot środkowy)     \n";
+    cout << "8.  Quicksort (pivot losowy)       \n";
+    cout << "9.  Wszystkie sortowania           \n";
+    cout << "10. Wyjscie do menu                \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;

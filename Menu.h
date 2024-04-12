@@ -10,4 +10,5 @@ private:
     int displayMainMenu();
     int displayTestingMenu();
     int displaySimulationMenu();
+    int displaySortingMenu();
 };
