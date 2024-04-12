@@ -67,6 +67,30 @@ build CMakeFiles/Projekt_AiZO.dir/TestSorting.cpp.obj: CXX_COMPILER__Projekt_AiZ
   OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
   OBJECT_FILE_DIR = CMakeFiles\Projekt_AiZO.dir
 
+build CMakeFiles/Projekt_AiZO.dir/SimulationSorting.cpp.obj: CXX_COMPILER__Projekt_AiZO_unscanned_Debug C$:/Users/szewc/CLionProjects/Projekt_AiZO/SimulationSorting.cpp || cmake_object_order_depends_target_Projekt_AiZO
+  DEP_FILE = CMakeFiles\Projekt_AiZO.dir\SimulationSorting.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
+  OBJECT_FILE_DIR = CMakeFiles\Projekt_AiZO.dir
+
+build CMakeFiles/Projekt_AiZO.dir/Sorting.cpp.obj: CXX_COMPILER__Projekt_AiZO_unscanned_Debug C$:/Users/szewc/CLionProjects/Projekt_AiZO/Sorting.cpp || cmake_object_order_depends_target_Projekt_AiZO
+  DEP_FILE = CMakeFiles\Projekt_AiZO.dir\Sorting.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
+  OBJECT_FILE_DIR = CMakeFiles\Projekt_AiZO.dir
+
+build CMakeFiles/Projekt_AiZO.dir/DynamicArray.cpp.obj: CXX_COMPILER__Projekt_AiZO_unscanned_Debug C$:/Users/szewc/CLionProjects/Projekt_AiZO/DynamicArray.cpp || cmake_object_order_depends_target_Projekt_AiZO
+  DEP_FILE = CMakeFiles\Projekt_AiZO.dir\DynamicArray.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
+  OBJECT_FILE_DIR = CMakeFiles\Projekt_AiZO.dir
+
+build CMakeFiles/Projekt_AiZO.dir/FillArray.cpp.obj: CXX_COMPILER__Projekt_AiZO_unscanned_Debug C$:/Users/szewc/CLionProjects/Projekt_AiZO/FillArray.cpp || cmake_object_order_depends_target_Projekt_AiZO
+  DEP_FILE = CMakeFiles\Projekt_AiZO.dir\FillArray.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir
+  OBJECT_FILE_DIR = CMakeFiles\Projekt_AiZO.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Projekt_AiZO
@@ -75,7 +99,7 @@ build CMakeFiles/Projekt_AiZO.dir/TestSorting.cpp.obj: CXX_COMPILER__Projekt_AiZ
 #############################################
 # Link the executable Projekt_AiZO.exe
 
-build Projekt_AiZO.exe: CXX_EXECUTABLE_LINKER__Projekt_AiZO_Debug CMakeFiles/Projekt_AiZO.dir/Main.cpp.obj CMakeFiles/Projekt_AiZO.dir/Menu.cpp.obj CMakeFiles/Projekt_AiZO.dir/TestSorting.cpp.obj
+build Projekt_AiZO.exe: CXX_EXECUTABLE_LINKER__Projekt_AiZO_Debug CMakeFiles/Projekt_AiZO.dir/Main.cpp.obj CMakeFiles/Projekt_AiZO.dir/Menu.cpp.obj CMakeFiles/Projekt_AiZO.dir/TestSorting.cpp.obj CMakeFiles/Projekt_AiZO.dir/SimulationSorting.cpp.obj CMakeFiles/Projekt_AiZO.dir/Sorting.cpp.obj CMakeFiles/Projekt_AiZO.dir/DynamicArray.cpp.obj CMakeFiles/Projekt_AiZO.dir/FillArray.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Projekt_AiZO.dir

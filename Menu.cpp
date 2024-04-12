@@ -5,23 +5,78 @@ using namespace std;
 
 void Menu::runMainMenu() {
     int number;
+    int test;
+    int simulation;
     do {
         number = displayMainMenu();
 
         switch (number) {
             case 1:
                 cout << "Tryb pracy testowej\n";
+                do {
+                    test = displayTestingMenu();
+                    switch (test) {
+                        case 1:
+                            cout << "Wczytanie danych z pliku\n";
+                            break;
+                        case 2:
+                            cout << "Zaladowanie losowych danych\n";
+                            break;
+                        case 3:
+                            cout << "Wykonanie sortowania\n";
+                            break;
+                        case 4:
+                            cout << "Wypisanie danych w tablicy\n";
+                            break;
+                        case 5:
+                            cout << "Zapisanie danych do pliku\n";
+                            break;
+                        case 6:
+                            cout << "Powrot do glownego menu\n";
+                            break;
+                        default:
+                            cout << "Bledny numer, podaj prawidlowa wartosc\n";
+                            break;
+                    }
+                } while(test != 6);
                 break;
             case 2:
                 cout << "Tryb pracy badawczej\n";
+                do {
+                    simulation = displaySimulationMenu();
+                    switch (simulation) {
+                        case 1:
+                            cout << "Wczytanie danych z pliku\n";
+                            break;
+                        case 2:
+                            cout << "Zaladowanie losowych danych\n";
+                            break;
+                        case 3:
+                            cout << "Wykonanie sortowania\n";
+                            break;
+                        case 4:
+                            cout << "Wypisanie danych w tablicy\n";
+                            break;
+                        case 5:
+                            cout << "Zapisanie danych do pliku\n";
+                            break;
+                        case 6:
+                            cout << "Powrot do glownego menu\n";
+                            break;
+                        default:
+                            cout << "Bledny numer, podaj prawidlowa wartosc\n";
+                            break;
+                    }
+                } while(simulation != 6);
                 break;
             case 3:
                 cout << "Zakonczenie dzialania programu\n";
                 break;
             default:
                 cout << "Bledny numer, podaj prawidlowa wartosc\n";
+                break;
         }
-    } while (number != 6);
+    } while (number != 3);
 }
 
 int Menu::displayMainMenu() {
@@ -31,6 +86,36 @@ int Menu::displayMainMenu() {
     cout << "1. Tryb pracy testowej     \n";
     cout << "2. Tryb pracy badawczej    \n";
     cout << "3. Wyjscie                 \n";
+    cout << "Wpisz numer zadania: ";
+    cin >> task;
+    return task;
+}
+
+int Menu::displayTestingMenu() {
+    int task;
+    cout << "---------------------------------- \n";
+    cout << "       --- Testing Menu ---        \n";
+    cout << "1. Wczytanie danych z pliku        \n";
+    cout << "2. Zaladowanie losowych danych     \n";
+    cout << "3. Wykonanie sortowania            \n";
+    cout << "4. Wypisanie danych w tablicy      \n";
+    cout << "5. Zapisanie danych do pliku       \n";
+    cout << "6. Wyjscie do menu glownego        \n";
+    cout << "Wpisz numer zadania: ";
+    cin >> task;
+    return task;
+}
+
+int Menu::displaySimulationMenu() {
+    int task;
+    cout << "---------------------------------- \n";
+    cout << "      --- Simulation Menu ---      \n";
+    cout << "1. Wczytanie danych z pliku        \n";
+    cout << "2. Zaladowanie losowych danych     \n";
+    cout << "3. Wykonanie sortowania            \n";
+    cout << "4. Wypisanie danych w tablicy      \n";
+    cout << "5. Zapisanie danych do pliku       \n";
+    cout << "6. Wyjscie do menu glownego        \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;

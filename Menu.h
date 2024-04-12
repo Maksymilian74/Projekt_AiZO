@@ -8,4 +8,6 @@ public:
 
 private:
     int displayMainMenu();
+    int displayTestingMenu();
+    int displaySimulationMenu();
 };
