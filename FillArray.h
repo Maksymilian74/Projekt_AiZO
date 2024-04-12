@@ -1,0 +1,12 @@
+
+
+#ifndef PROJEKT_AIZO_FILLARRAY_H
+#define PROJEKT_AIZO_FILLARRAY_H
+
+
+class FillArray {
+
+};
+
+
+#endif //PROJEKT_AIZO_FILLARRAY_H
