@@ -10,7 +10,7 @@ public:
     ~TestSorting(); // Destruktor
 
     void loadDataFromFile(); // Metoda wczytująca dane z pliku
-    void loadRandomData(int size); // Metoda generująca losowe dane do sortowania
+    void loadRandomData(int size, int fillingMethod); // Metoda generująca losowe dane do sortowania
     void sort(int sortingMethod); // Metoda wykonująca sortowanie i mierząca czas
     void displayArrayToSort(); // Metoda wyświetlająca zawartość tablicy przed sortowaniem
     void displayArraySorted(); // Metoda wyświetlająca zawartość tablicy po sortowaniu

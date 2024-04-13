@@ -11,6 +11,7 @@ void Menu::runMainMenu() {
     int simulation;
     int sorting;
     int size;
+    int filling;
     TestSorting<int>* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
 
     do {
@@ -32,7 +33,8 @@ void Menu::runMainMenu() {
                             cout << "Zaladowanie losowych danych\n";
                             cout << "Podaj rozmiar tablicy do posortowania\n";
                             cin >> size;
-                            testSorting->loadRandomData(size);
+                            filling = displayFillingMenu();
+                            testSorting->loadRandomData(size, filling);
                             break;
                         case 3:
                             cout << "Wykonanie sortowania\n";
@@ -146,18 +148,31 @@ int Menu::displaySimulationMenu() {
 
 int Menu::displaySortingMenu() {
     int task;
-    cout << "---------------------------------- \n";
-    cout << "       --- Sorting Menu ---        \n";
-    cout << "1.  Sortowanie przez wstawianie    \n";
-    cout << "2.  Sortowanie przez kopcowanie    \n";
-    cout << "3.  Sortowanie Shella (I wariant)  \n";
-    cout << "4.  Sortowanie Shella (II wariant) \n";
-    cout << "5.  Quicksort (pivot lewy)         \n";
-    cout << "6.  Quicksort (pivot prawy)        \n";
-    cout << "7.  Quicksort (pivot środkowy)     \n";
-    cout << "8.  Quicksort (pivot losowy)       \n";
-    cout << "9.  Wszystkie sortowania           \n";
-    cout << "10. Wyjscie do menu                \n";
+    cout << "------------------------------------------ \n";
+    cout << "           --- Sorting Menu ---            \n";
+    cout << "1.  Sortowanie przez wstawianie            \n";
+    cout << "2.  Sortowanie przez kopcowanie            \n";
+    cout << "3.  Sortowanie Shella (I wariant)          \n";
+    cout << "4.  Sortowanie Shella (II wariant)         \n";
+    cout << "5.  Quicksort (pivot lewy)                 \n";
+    cout << "6.  Quicksort (pivot prawy)                \n";
+    cout << "7.  Quicksort (pivot środkowy)             \n";
+    cout << "8.  Quicksort (pivot losowy)               \n";
+    cout << "9.  Wszystkie sortowania (tylko do badania)\n";
+    cout << "Wpisz numer zadania: ";
+    cin >> task;
+    return task;
+}
+
+int Menu::displayFillingMenu() {
+    int task;
+    cout << "---------------------------------------------- \n";
+    cout << "             --- Filling Menu ---              \n";
+    cout << "1.  Wypelnienie losowymi danymi                \n";
+    cout << "2.  Wypelnienie danymi posortowanymi rosnaco   \n";
+    cout << "3.  Wypelnienie danymi posortowanymi malejaco  \n";
+    cout << "4.  Wypelnienie danymi posortowanymi w 33%     \n";
+    cout << "5.  Wypelnienie danymi posortowanymi w 66%     \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;

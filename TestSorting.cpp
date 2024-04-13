@@ -37,7 +37,7 @@ void TestSorting<T>::loadDataFromFile() {
 }
 
 template<typename T>
-void TestSorting<T>::loadRandomData(int size) {
+void TestSorting<T>::loadRandomData(int size, int fillingMethod) {
     setSizeOfTab(size);
     if (dataToSort != nullptr) {
         cout << "Podmiana starych danych na nowe\n";
@@ -47,9 +47,33 @@ void TestSorting<T>::loadRandomData(int size) {
         cout << "Generowanie nowych danych do tablicy\n";
     }
     dataToSort = new T[getSizeOfTab()];
-    // Wypełnienie tablicy losowymi danymi za pomocą FillArray
     FillArray<T> fillArray;
-    fillArray.fillRandom(dataToSort, size);
+
+    switch (fillingMethod) {
+        case 1:
+            cout << "Wybrano losowe wypelnienie tablicy\n";
+            fillArray.fillRandom(dataToSort, size);
+            break;
+        case 2:
+            cout << "Wybrano wypelnienie tablicy danymi posortowanymi rosnaco\n";
+            fillArray.fillAscending(dataToSort, size);
+            break;
+        case 3:
+            cout << "Wybrano wypelnienie tablicy danymi posortowanymi malejaco\n";
+            fillArray.fillDescending(dataToSort, size);
+            break;
+        case 4:
+            cout << "Wybrano wypelnienie tablicy danymi posortowanymi w 33%\n";
+            fillArray.fillOneThird(dataToSort, size);
+            break;
+        case 5:
+            cout << "Wybrano wypelnienie tablicy danymi posortowanymi w 66%\n";
+            fillArray.fillTwoThirds(dataToSort, size);
+            break;
+        default:
+            cout << "Nieznany sposób wypelnienia tablicy\n";
+            break;
+    }
 }
 
 template<typename T>
@@ -90,6 +114,9 @@ void TestSorting<T>::sort(int sortingMethod) {
                 break;
             case 8:
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 3); // Pivot losowy
+                break;
+            case 9:
+                cout << "Wszystkie sortowania dostepne sa tylko w trybie badawczym!\n";
                 break;
             default:
                 cout << "Nieznany rodzaj sortowania\n";

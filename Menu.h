@@ -11,4 +11,5 @@ private:
     int displayTestingMenu();
     int displaySimulationMenu();
     int displaySortingMenu();
+    int displayFillingMenu();
 };
