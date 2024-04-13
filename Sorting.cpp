@@ -7,7 +7,7 @@ using namespace std;
 
 // Sortowanie przez wstawianie
 template<typename T>
-void Sorting::insertionSort(DynamicArray<T>& tab, int size) {
+void Sorting::insertionSort(T* tab, int size) {
     for (int i = 1; i < size; i++) {
         T key = tab[i];
         int j = i - 1;
@@ -21,7 +21,7 @@ void Sorting::insertionSort(DynamicArray<T>& tab, int size) {
 
 // Metoda pomocnicza do sortowania przez kopcowanie
 template<typename T>
-void Sorting::heapHelp(DynamicArray<T>& tab, int size, int root) {
+void Sorting::heapHelp(T* tab, int size, int root) {
     int tmp = root;
     int left = 2 * root + 1;
     int right = 2 * root + 2;
@@ -34,25 +34,25 @@ void Sorting::heapHelp(DynamicArray<T>& tab, int size, int root) {
 
     if (tmp != root) {
         swap(tab[root], tab[tmp]);
-        heapHelp(tab, size, tmp);
+        heapHelp<T>(tab, size, tmp);
     }
 }
 
 // Sortowanie przez kopcowanie
 template<typename T>
-void Sorting::heapSort(DynamicArray<T>& tab, int size) {
+void Sorting::heapSort(T* tab, int size) {
     for (int i = size / 2 - 1; i >= 0; i--)
-        heapHelp(tab, size, i);
+        heapHelp<T>(tab, size, i);
 
     for (int i = size - 1; i > 0; i--) {
         swap(tab[0], tab[i]);
-        heapHelp(tab, i, 0);
+        heapHelp<T>(tab, i, 0);
     }
 }
 
 // Sortowanie Shella (wariant I)
 template<typename T>
-void Sorting::shellSortOne(DynamicArray<T>& tab, int size) {
+void Sorting::shellSortOne(T* tab, int size) {
     for (int gap = size / 2; gap > 0; gap /= 2) {
         for (int i = gap; i < size; i++) {
             T tmp = tab[i];
@@ -66,7 +66,7 @@ void Sorting::shellSortOne(DynamicArray<T>& tab, int size) {
 
 // Sortowanie Shella (wariant II) z użyciem odstępu (2^k) - 1
 template<typename T>
-void Sorting::shellSortTwo(DynamicArray<T>& tab, int size) {
+void Sorting::shellSortTwo(T* tab, int size) {
     int gap = 1;
     while (gap < size / 2)
         gap = 2 * gap + 1;
@@ -107,7 +107,7 @@ int Sorting::pivotPosition(int left, int right, int pivotType) {
 }
 
 template<typename T>
-int Sorting::partition(DynamicArray<T>& tab, int left, int right, int pivotType) {
+int Sorting::partition(T* tab, int left, int right, int pivotType) {
     int pivotIndex = pivotPosition<T>(left, right, pivotType);
     T pivot = tab[pivotIndex]; // Wybór pivota
 
@@ -142,14 +142,14 @@ int Sorting::partition(DynamicArray<T>& tab, int left, int right, int pivotType)
 }
 
 template<typename T>
-void Sorting::quickSort(DynamicArray<T>& tab, int left, int right, int pivotType) {
+void Sorting::quickSort(T* tab, int left, int right, int pivotType) {
     if (left < right) {
         // Podzial tablicy i znalezienie punkt podziału (pivot)
-        int pivotIndex = partition(tab, left, right, pivotType);
+        int pivotIndex = partition<T>(tab, left, right, pivotType);
 
         // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
-        quickSort(tab, left, pivotIndex - 1, pivotType);
-        quickSort(tab, pivotIndex + 1, right, pivotType);
+        quickSort<T>(tab, left, pivotIndex - 1, pivotType);
+        quickSort<T>(tab, pivotIndex + 1, right, pivotType);
     }
 }
 

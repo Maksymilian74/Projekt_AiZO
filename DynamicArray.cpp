@@ -3,10 +3,10 @@
 #include <stdexcept> // Dla std::out_of_range
 
 template<typename T>
-DynamicArray<T>::DynamicArray(int size) {
-    this->size = size;
-    array = new T[size];
-}
+DynamicArray<T>::DynamicArray() : size(0), array(nullptr) {} // Konstruktor domyślny
+
+template<typename T>
+DynamicArray<T>::DynamicArray(int size) : size(size), array(new T[size]) {} // Konstruktor z ustalonym rozmiarem
 
 template<typename T>
 DynamicArray<T>::~DynamicArray() {
@@ -34,4 +34,4 @@ const T& DynamicArray<T>::operator[](int index) const {
     return array[index];
 }
 
-
+template class DynamicArray<int>;

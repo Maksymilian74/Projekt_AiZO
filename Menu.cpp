@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "TestSorting.h"
+#include "TestSorting.cpp"
 #include <iostream>
 
 using namespace std;
@@ -9,7 +10,8 @@ void Menu::runMainMenu() {
     int test;
     int simulation;
     int sorting;
-    TestSorting* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
+    int size;
+    TestSorting<int>* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
 
     do {
         number = displayMainMenu();
@@ -18,7 +20,7 @@ void Menu::runMainMenu() {
             case 1:
                 cout << "Tryb pracy testowej\n";
                 // Utworzenie obiektu klasy TestSorting
-                testSorting = new TestSorting();
+                testSorting = new TestSorting<int>();
                 do {
                     test = displayTestingMenu();
                     switch (test) {
@@ -28,12 +30,14 @@ void Menu::runMainMenu() {
                             break;
                         case 2:
                             cout << "Zaladowanie losowych danych\n";
-                            testSorting->loadRandomData();
+                            cout << "Podaj rozmiar tablicy do posortowania\n";
+                            cin >> size;
+                            testSorting->loadRandomData(size);
                             break;
                         case 3:
                             cout << "Wykonanie sortowania\n";
                             sorting = displaySortingMenu();
-                            testSorting->sort();
+                            testSorting->sort(sorting);
                             break;
                         case 4:
                             cout << "Wypisanie danych w tablicy\n";

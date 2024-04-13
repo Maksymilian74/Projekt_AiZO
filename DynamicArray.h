@@ -8,7 +8,8 @@ private:
     int size; // Rozmiar tablicy
 
 public:
-    DynamicArray(int size); // Konstruktor
+    DynamicArray();
+    explicit DynamicArray(int size); // Konstruktor
 
     ~DynamicArray(); // Destruktor
 
