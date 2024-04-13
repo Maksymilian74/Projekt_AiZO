@@ -25,6 +25,10 @@ public:
     template<typename T>
     static void quickSort(T* tab, int low, int high, int pivotType);
 
+    // Metoda sprawdzająca, czy tablica jest posortowana
+    template<typename T>
+    static void isSorted(T* tab, int size);
+
  private:
     // Metoda pomocnicza do sortowania przez kopcowanie
     template<typename T>

@@ -156,7 +156,7 @@ int Menu::displaySortingMenu() {
     cout << "4.  Sortowanie Shella (II wariant)         \n";
     cout << "5.  Quicksort (pivot lewy)                 \n";
     cout << "6.  Quicksort (pivot prawy)                \n";
-    cout << "7.  Quicksort (pivot środkowy)             \n";
+    cout << "7.  Quicksort (pivot srodkowy)             \n";
     cout << "8.  Quicksort (pivot losowy)               \n";
     cout << "9.  Wszystkie sortowania (tylko do badania)\n";
     cout << "Wpisz numer zadania: ";

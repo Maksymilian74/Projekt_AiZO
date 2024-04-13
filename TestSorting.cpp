@@ -105,15 +105,19 @@ void TestSorting<T>::sort(int sortingMethod) {
                 break;
             case 5:
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 0); // Pivot lewy
+                Sorting::isSorted(sortedData, getSizeOfTab());
                 break;
             case 6:
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 1); // Pivot prawy
+                Sorting::isSorted(sortedData, getSizeOfTab());
                 break;
             case 7:
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 2); // Pivot środkowy
+                Sorting::isSorted(sortedData, getSizeOfTab());
                 break;
             case 8:
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 3); // Pivot losowy
+                Sorting::isSorted(sortedData, getSizeOfTab());
                 break;
             case 9:
                 cout << "Wszystkie sortowania dostepne sa tylko w trybie badawczym!\n";

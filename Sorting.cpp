@@ -17,6 +17,7 @@ void Sorting::insertionSort(T* tab, int size) {
         }
         tab[j + 1] = key;
     }
+    isSorted<T>(tab, size);
 }
 
 // Metoda pomocnicza do sortowania przez kopcowanie
@@ -48,6 +49,7 @@ void Sorting::heapSort(T* tab, int size) {
         swap(tab[0], tab[i]);
         heapHelp<T>(tab, i, 0);
     }
+    isSorted<T>(tab, size);
 }
 
 // Sortowanie Shella (wariant I)
@@ -62,6 +64,7 @@ void Sorting::shellSortOne(T* tab, int size) {
             tab[j] = tmp;
         }
     }
+    isSorted<T>(tab, size);
 }
 
 // Sortowanie Shella (wariant II) z użyciem odstępu (2^k) - 1
@@ -84,6 +87,7 @@ void Sorting::shellSortTwo(T* tab, int size) {
         }
         gap /= 2;
     }
+    isSorted<T>(tab, size);
 }
 
 template<typename T>
@@ -151,5 +155,16 @@ void Sorting::quickSort(T* tab, int left, int right, int pivotType) {
         quickSort<T>(tab, left, pivotIndex - 1, pivotType);
         quickSort<T>(tab, pivotIndex + 1, right, pivotType);
     }
+    //isSorted<T>(tab, right + 1);
+}
+
+template<typename T>
+void Sorting::isSorted(T* tab, int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        if (tab[i] > tab[i + 1]) {
+            cout << "Tablica NIE JEST poprawnie posortowana!!!\n";
+        }
+    }
+    cout << "Sortowanie przebieglo pomyslnie\n";
 }
 
