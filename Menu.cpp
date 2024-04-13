@@ -40,21 +40,25 @@ void Menu::runMainMenu() {
                             testSorting->sort(sorting);
                             break;
                         case 4:
-                            cout << "Wypisanie danych w tablicy\n";
-                            testSorting->displayArray();
+                            cout << "Wypisanie nieposortowanych danych w tablicy\n";
+                            testSorting->displayArrayToSort();
                             break;
                         case 5:
+                            cout << "Wypisanie posortowanych danych w tablicy\n";
+                            testSorting->displayArraySorted();
+                            break;
+                        case 6:
                             cout << "Zapisanie danych do pliku\n";
                             testSorting->saveDataToFile();
                             break;
-                        case 6:
+                        case 7:
                             cout << "Powrot do glownego menu\n";
                             break;
                         default:
                             cout << "Bledny numer, podaj prawidlowa wartosc\n";
                             break;
                     }
-                } while(test != 6);
+                } while(test != 7);
                 delete testSorting;  //Usuniecie obiektu TestSorting
                 testSorting = nullptr; //Ustawienie wskaźnika na nullptr
                 break;
@@ -111,14 +115,15 @@ int Menu::displayMainMenu() {
 
 int Menu::displayTestingMenu() {
     int task;
-    cout << "---------------------------------- \n";
-    cout << "       --- Testing Menu ---        \n";
-    cout << "1. Wczytanie danych z pliku        \n";
-    cout << "2. Zaladowanie losowych danych     \n";
-    cout << "3. Wykonanie sortowania            \n";
-    cout << "4. Wypisanie danych w tablicy      \n";
-    cout << "5. Zapisanie danych do pliku       \n";
-    cout << "6. Wyjscie do menu glownego        \n";
+    cout << "------------------------------------------------\n";
+    cout << "            --- Testing Menu ---                \n";
+    cout << "1. Wczytanie danych z pliku                     \n";
+    cout << "2. Zaladowanie losowych danych                  \n";
+    cout << "3. Wykonanie sortowania                         \n";
+    cout << "4. Wypisanie nieposortowanych danych w tablicy  \n";
+    cout << "5. Wypisanie posortowanych danych w tablicy     \n";
+    cout << "6. Zapisanie danych do pliku                    \n";
+    cout << "7. Wyjscie do menu glownego                     \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;
