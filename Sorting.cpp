@@ -2,15 +2,12 @@
 #include <algorithm>
 #include <iostream>
 #include <cstdlib>
-#include <chrono>
 
 using namespace std;
-using namespace std::chrono;
 
 // Sortowanie przez wstawianie
 template<typename T>
 void Sorting::insertionSort(T* tab, int size) {
-    auto start = high_resolution_clock::now(); // Rozpoczęcie pomiaru czasu
     for (int i = 1; i < size; i++) {
         T key = tab[i];
         int j = i - 1;
@@ -20,11 +17,6 @@ void Sorting::insertionSort(T* tab, int size) {
         }
         tab[j + 1] = key;
     }
-    auto stop = high_resolution_clock::now(); // Zakończenie pomiaru czasu
-    auto time = duration_cast<duration<double, std::milli>>(stop - start); // Obliczenie czasu trwania sortowania
-
-    cout << "Czas sortowania przez wstawianie: " << time.count() << " milisekund\n";
-    isSorted<T>(tab, size);
 }
 
 // Metoda pomocnicza do sortowania przez kopcowanie
@@ -49,7 +41,6 @@ void Sorting::heapHelp(T* tab, int size, int root) {
 // Sortowanie przez kopcowanie
 template<typename T>
 void Sorting::heapSort(T* tab, int size) {
-    auto start = high_resolution_clock::now(); // Rozpoczęcie pomiaru czasu
     for (int i = size / 2 - 1; i >= 0; i--)
         heapHelp<T>(tab, size, i);
 
@@ -57,17 +48,11 @@ void Sorting::heapSort(T* tab, int size) {
         swap(tab[0], tab[i]);
         heapHelp<T>(tab, i, 0);
     }
-    auto stop = high_resolution_clock::now(); // Zakończenie pomiaru czasu
-    auto duration = duration_cast<milliseconds>(stop - start); // Obliczenie czasu trwania sortowania
-
-    cout << "Czas sortowania przez wstawianie: " << duration.count() << " milisekund\n";
-    isSorted<T>(tab, size);
 }
 
 // Sortowanie Shella (wariant I)
 template<typename T>
 void Sorting::shellSortOne(T* tab, int size) {
-    auto start = high_resolution_clock::now(); // Rozpoczęcie pomiaru czasu
     for (int gap = size / 2; gap > 0; gap /= 2) {
         for (int i = gap; i < size; i++) {
             T tmp = tab[i];
@@ -77,17 +62,11 @@ void Sorting::shellSortOne(T* tab, int size) {
             tab[j] = tmp;
         }
     }
-    auto stop = high_resolution_clock::now(); // Zakończenie pomiaru czasu
-    auto duration = duration_cast<milliseconds>(stop - start); // Obliczenie czasu trwania sortowania
-
-    cout << "Czas sortowania przez wstawianie: " << duration.count() << " milisekund\n";
-    isSorted<T>(tab, size);
 }
 
 // Sortowanie Shella (wariant II) z użyciem odstępu (2^k) - 1
 template<typename T>
 void Sorting::shellSortTwo(T* tab, int size) {
-    auto start = high_resolution_clock::now(); // Rozpoczęcie pomiaru czasu
     int gap = 1;
     while (gap < size / 2)
         gap = 2 * gap + 1;
@@ -105,11 +84,6 @@ void Sorting::shellSortTwo(T* tab, int size) {
         }
         gap /= 2;
     }
-    auto stop = high_resolution_clock::now(); // Zakończenie pomiaru czasu
-    auto duration = duration_cast<milliseconds>(stop - start); // Obliczenie czasu trwania sortowania
-
-    cout << "Czas sortowania przez wstawianie: " << duration.count() << " milisekund\n";
-    isSorted<T>(tab, size);
 }
 
 template<typename T>

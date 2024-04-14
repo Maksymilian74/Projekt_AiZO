@@ -4,15 +4,22 @@
 #include "Sorting.h"
 #include "Sorting.cpp"
 #include <iostream>
+#include <chrono>
+#include <fstream>
 
 using namespace std;
+using namespace std::chrono;
 
 template<typename T>
 TestSorting<T>::TestSorting() {
-    sortingTime = 0;
     sizeOfTab = 0;
     dataToSort = nullptr;
     sortedData = nullptr;
+
+    // Inicjalizacja czasu
+    start = high_resolution_clock::now();
+    stop = high_resolution_clock::now();
+    time = 0;
 }
 
 template<typename T>
@@ -32,8 +39,40 @@ int TestSorting<T>::getSizeOfTab() {
 }
 
 template<typename T>
-void TestSorting<T>::loadDataFromFile() {
-    cout << "Wczytanie danych z pliku\n";
+void TestSorting<T>::loadDataFromFile(string fileToOpen) {
+    ifstream file(fileToOpen); // Tworzenie strumienia do odczytu danych z pliku
+    if (!file.is_open()) {
+        cout << "Blad! Nie udalo sie otworzyc pliku.\n";
+        return;
+    }
+
+    // Odczytanie rozmiaru tablicy z pierwszej linii pliku
+    int size;
+    file >> size;
+    setSizeOfTab(size);
+    if (size <= 0) {
+        cout << "Blad! Nieprawidlowy rozmiar tablicy.\n";
+        file.close();
+        return;
+    }
+
+    // Alokacja pamięci na tablicę danych
+    if (dataToSort != nullptr) {
+        delete[] dataToSort;
+       // delete[] sortedData;
+    }
+    dataToSort = new T[getSizeOfTab()];
+
+    // Odczytanie danych z pliku i zapisanie ich do tablicy dataToSort
+    for (int i = 0; i < sizeOfTab; ++i) {
+        if (!(file >> dataToSort[i])) {
+            cout << "Blad! Nie udalo sie odczytac danych z pliku.\n";
+            file.close();
+            return;
+        }
+    }
+
+    file.close();
 }
 
 template<typename T>
@@ -42,7 +81,7 @@ void TestSorting<T>::loadRandomData(int size, int fillingMethod) {
     if (dataToSort != nullptr) {
         cout << "Podmiana starych danych na nowe\n";
         delete[] dataToSort;
-        delete[] sortedData;
+        //delete[] sortedData;
     } else {
         cout << "Generowanie nowych danych do tablicy\n";
     }
@@ -92,32 +131,44 @@ void TestSorting<T>::sort(int sortingMethod) {
         }
         switch (sortingMethod) {
             case 1:
+                start = high_resolution_clock::now();
                 Sorting::insertionSort(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 2:
+                start = high_resolution_clock::now();
                 Sorting::heapSort(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 3:
+                start = high_resolution_clock::now();
                 Sorting::shellSortOne(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 4:
+                start = high_resolution_clock::now();
                 Sorting::shellSortTwo(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 5:
+                start = high_resolution_clock::now();
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 0); // Pivot lewy
-                Sorting::isSorted(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 6:
+                start = high_resolution_clock::now();
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 1); // Pivot prawy
-                Sorting::isSorted(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 7:
+                start = high_resolution_clock::now();
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 2); // Pivot środkowy
-                Sorting::isSorted(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 8:
+                start = high_resolution_clock::now();
                 Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 3); // Pivot losowy
-                Sorting::isSorted(sortedData, getSizeOfTab());
+                stop = high_resolution_clock::now();
                 break;
             case 9:
                 cout << "Wszystkie sortowania dostepne sa tylko w trybie badawczym!\n";
@@ -126,6 +177,10 @@ void TestSorting<T>::sort(int sortingMethod) {
                 cout << "Nieznany rodzaj sortowania\n";
                 break;
         }
+
+        time = duration_cast<duration<double, std::milli>>(stop - start).count();
+        cout << "Czas sortowania: " << time << " ms\n";
+        Sorting::isSorted(sortedData, getSizeOfTab());
     }
 }
 

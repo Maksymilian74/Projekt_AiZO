@@ -12,6 +12,7 @@ void Menu::runMainMenu() {
     int sorting;
     int size;
     int filling;
+    string fileToOpen;
     TestSorting<int>* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
 
     do {
@@ -27,7 +28,11 @@ void Menu::runMainMenu() {
                     switch (test) {
                         case 1:
                             cout << "Wczytanie danych z pliku\n";
-                            testSorting->loadDataFromFile();
+                            cout << "Podaj nazwe pliku z rozszerzeniem\n";
+                            //C:/Users/W10/Desktop/liczba.txt - ścieżka z Pulpitu
+                            //C:/Users/W10/CLionProjects/Projekt_AiZO/liczby.txt - ścieżka z projektu
+                            cin >> fileToOpen;
+                            testSorting->loadDataFromFile(fileToOpen);
                             break;
                         case 2:
                             cout << "Zaladowanie losowych danych\n";
