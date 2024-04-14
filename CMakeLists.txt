@@ -12,8 +12,6 @@ add_executable(Projekt_AiZO Main.cpp
         SimulationSorting.h
         Sorting.cpp
         Sorting.h
-        DynamicArray.cpp
-        DynamicArray.h
         FillArray.cpp
         FillArray.h
 )

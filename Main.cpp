@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include "DynamicArray.cpp"
 #include "Sorting.cpp"
 
 class Main {
