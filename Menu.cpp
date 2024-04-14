@@ -13,6 +13,7 @@ void Menu::runMainMenu() {
     int size;
     int filling;
     string fileToOpen;
+    string fileToSave;
     TestSorting<int>* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
 
     do {
@@ -56,7 +57,11 @@ void Menu::runMainMenu() {
                             break;
                         case 6:
                             cout << "Zapisanie danych do pliku\n";
-                            testSorting->saveDataToFile();
+                            cout << "Podaj nazwe pliku z rozszerzeniem\n";
+                            //C:/Users/W10/Desktop/wynik.txt - ścieżka z Pulpitu
+                            //C:/Users/W10/CLionProjects/Projekt_AiZO/liczby.txt - ścieżka z projektu
+                            cin >> fileToSave;
+                            testSorting->saveDataToFile(fileToSave);
                             break;
                         case 7:
                             cout << "Powrot do glownego menu\n";

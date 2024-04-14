@@ -19,7 +19,7 @@ public:
     void sort(int sortingMethod); // Metoda wykonująca sortowanie i mierząca czas
     void displayArrayToSort(); // Metoda wyświetlająca zawartość tablicy przed sortowaniem
     void displayArraySorted(); // Metoda wyświetlająca zawartość tablicy po sortowaniu
-    void saveDataToFile(); // Metoda zapisująca dane do pliku
+    void saveDataToFile(string fileToSave); // Metoda zapisująca dane do pliku
     void setSizeOfTab(int size); //Metoda ustawiająca wielkosc tablicy
     int getSizeOfTab(); //Metoda do zwrocenia rozmiaru tablicy
 

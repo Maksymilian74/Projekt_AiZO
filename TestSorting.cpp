@@ -216,6 +216,28 @@ void TestSorting<T>::displayArraySorted() {
 }
 
 template<typename T>
-void TestSorting<T>::saveDataToFile() {
-    cout << "Zapisanie danych do pliku\n";
+void TestSorting<T>::saveDataToFile(string fileToSave) {
+    if (sortedData == nullptr) {
+        cout << "Dane nie zostaly jeszcze posortowane\n";
+    } else {
+        cout << "Zapisanie danych do pliku\n";
+
+        ofstream file(fileToSave); // Tworzenie strumienia do zapisu danych do pliku
+        if (!file.is_open()) {
+            cout << "Blad! Nie udalo sie otworzyc pliku.\n";
+            return;
+        }
+
+        // Zapisanie czasu sortowania do pliku
+        file << "Czas sortowania: " << time << " ms\n";
+
+        // Zapisanie posortowanej tablicy do pliku
+            for (int i = 0; i < getSizeOfTab(); i++) {
+                file << sortedData[i] << " ";
+
+            file << "\n";
+        }
+
+        file.close();
+    }
 }
