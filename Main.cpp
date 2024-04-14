@@ -6,7 +6,7 @@ class Main {
 public:
     void run() {
        Menu menu;
-       menu.runMainMenu();
+       menu.selectDataType();
     }
 };
 

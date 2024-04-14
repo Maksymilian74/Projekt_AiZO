@@ -69,6 +69,7 @@ void TestSorting<T>::loadDataFromFile(string fileToOpen) {
     // Odczytanie danych z pliku i zapisanie ich do tablicy dataToSort
     for (int i = 0; i < sizeOfTab; ++i) {
         if (!(file >> dataToSort[i])) {
+            cout<< dataToSort[i] <<" ";
             cout << "Blad! Nie udalo sie odczytac danych z pliku.\n";
             file.close();
             return;

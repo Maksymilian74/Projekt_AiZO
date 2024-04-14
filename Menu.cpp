@@ -5,6 +5,33 @@
 
 using namespace std;
 
+void Menu::selectDataType() {
+    int type;
+    do {
+        type = displayTypeMenu();
+        switch (type) {
+            case 1:
+                cout << "Wybrano typ: INT\n";
+                runMainMenu<int>();
+                break;
+            case 2:
+                cout << "Wybrano typ: FLOAT\n";
+                runMainMenu<float>();
+                break;
+            case 3:
+                cout << "Zakonczenie dzialania programu\n";
+                break;
+            default:
+                cout << "Bledny numer, podaj prawidlowa wartosc\n";
+                break;
+        }
+
+    } while (type !=3);
+
+
+}
+
+template<typename T>
 void Menu::runMainMenu() {
     int number;
     int test;
@@ -14,7 +41,7 @@ void Menu::runMainMenu() {
     int filling;
     string fileToOpen;
     string fileToSave;
-    TestSorting<int>* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
+    TestSorting<T>* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
 
     do {
         number = displayMainMenu();
@@ -23,7 +50,7 @@ void Menu::runMainMenu() {
             case 1:
                 cout << "Tryb pracy testowej\n";
                 // Utworzenie obiektu klasy TestSorting
-                testSorting = new TestSorting<int>();
+                testSorting = new TestSorting<T>();
                 do {
                     test = displayTestingMenu();
                     switch (test) {
@@ -104,7 +131,7 @@ void Menu::runMainMenu() {
                 } while(simulation != 6);
                 break;
             case 3:
-                cout << "Zakonczenie dzialania programu\n";
+                cout << "Wyjscie to wyboru typu danych\n";
                 break;
             default:
                 cout << "Bledny numer, podaj prawidlowa wartosc\n";
@@ -119,7 +146,7 @@ int Menu::displayMainMenu() {
     cout << "     --- Main Menu ---     \n";
     cout << "1. Tryb pracy testowej     \n";
     cout << "2. Tryb pracy badawczej    \n";
-    cout << "3. Wyjscie                 \n";
+    cout << "3. Wybor typu danych       \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;
@@ -183,6 +210,18 @@ int Menu::displayFillingMenu() {
     cout << "3.  Wypelnienie danymi posortowanymi malejaco  \n";
     cout << "4.  Wypelnienie danymi posortowanymi w 33%     \n";
     cout << "5.  Wypelnienie danymi posortowanymi w 66%     \n";
+    cout << "Wpisz numer zadania: ";
+    cin >> task;
+    return task;
+}
+
+int Menu::displayTypeMenu() {
+    int task;
+    cout << "------------------------\n";
+    cout << "   --- Type Menu ---    \n";
+    cout << "1.  Typ danych: INT     \n";
+    cout << "2.  Typ danych: FLOAT   \n";
+    cout << "3.  Wyjscie             \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;
