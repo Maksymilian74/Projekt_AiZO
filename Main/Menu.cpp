@@ -1,6 +1,6 @@
 #include "Menu.h"
-#include "TestSorting.h"
-#include "TestSorting.cpp"
+#include "../Submenu/TestSorting.h"
+#include "../Submenu/TestSorting.cpp"
 #include <iostream>
 
 using namespace std;

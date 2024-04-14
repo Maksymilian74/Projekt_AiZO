@@ -1,7 +1,6 @@
 #ifndef SIMULATIONSORTING_H
 #define SIMULATIONSORTING_H
 
-#include "DynamicArray.h"
 
 class SimulationSorting {
 public:

@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "Sorting.cpp"
+#include "../Operations/Sorting.cpp"
 
 class Main {
 public:

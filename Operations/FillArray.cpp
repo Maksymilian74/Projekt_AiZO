@@ -1,5 +1,7 @@
 #include <functional>
 #include "FillArray.h"
+#include <iostream>
+
 using namespace std;
 
 template<typename T>
@@ -13,10 +15,22 @@ FillArray<T>::~FillArray() {}
 
 template<typename T>
 void FillArray<T>::fillRandom(T* array, int size) {
-    for (int i = 0; i < size; ++i) {
-        array[i] = rand() % 1000; // Losowa liczba z zakresu 0-999
+    if (is_same<T, int>::value) {
+        cout << "Typ danych: int" << endl;
+        for (int i = 0; i < size; i++) {
+            array[i] = rand() % 1000; // Losowa liczba z zakresu 0-999
+
+        }
+    } else if (is_same<T, float>::value) {
+        cout << "Typ danych: float" << endl;
+        for (int i = 0; i < size; i++) {
+            array[i] = static_cast<T>(rand() % 1000) + static_cast<T>(rand()) / RAND_MAX; // Losowa liczba z zakresu 0-999 typu float
+        }
     }
+
+
 }
+
 
 template<typename T>
 void FillArray<T>::fillAscending(T* array, int size) {

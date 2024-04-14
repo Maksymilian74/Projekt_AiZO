@@ -1,8 +1,6 @@
 #ifndef SORTING_H
 #define SORTING_H
 
-
-
 class Sorting {
 public:
     // Sortowanie przez wstawianie

@@ -1,7 +1,7 @@
 #ifndef TESTSORTING_H
 #define TESTSORTING_H
 
-#include "Sorting.h"
+#include "../Operations/Sorting.h"
 #include <chrono>
 #include <string>
 

@@ -1,8 +1,8 @@
 #include "TestSorting.h"
-#include "FillArray.h"
-#include "FillArray.cpp"
-#include "Sorting.h"
-#include "Sorting.cpp"
+#include "../Operations/FillArray.h"
+#include "../Operations/FillArray.cpp"
+#include "../Operations/Sorting.h"
+#include "../Operations/Sorting.cpp"
 #include <iostream>
 #include <chrono>
 #include <fstream>
