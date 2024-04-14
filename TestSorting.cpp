@@ -26,6 +26,8 @@ template<typename T>
 TestSorting<T>::~TestSorting() {
     delete [] dataToSort;
     delete [] sortedData;
+    dataToSort = nullptr;
+    sortedData = nullptr;
 }
 
 template<typename T>
@@ -59,6 +61,7 @@ void TestSorting<T>::loadDataFromFile(string fileToOpen) {
     // Alokacja pamięci na tablicę danych
     if (dataToSort != nullptr) {
         delete[] dataToSort;
+        dataToSort = nullptr;
        // delete[] sortedData;
     }
     dataToSort = new T[getSizeOfTab()];
@@ -81,6 +84,7 @@ void TestSorting<T>::loadRandomData(int size, int fillingMethod) {
     if (dataToSort != nullptr) {
         cout << "Podmiana starych danych na nowe\n";
         delete[] dataToSort;
+        dataToSort = nullptr;
         //delete[] sortedData;
     } else {
         cout << "Generowanie nowych danych do tablicy\n";
@@ -123,6 +127,7 @@ void TestSorting<T>::sort(int sortingMethod) {
     } else {
         if(sortedData != nullptr) {
             delete[] sortedData;
+            sortedData = nullptr;
         }
         // Skopiowanie danych do tablicy sortedData
         sortedData = new T[getSizeOfTab()];
