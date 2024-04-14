@@ -1,6 +1,8 @@
 #include "Menu.h"
 #include "../Submenu/TestSorting.h"
+#include "../Submenu/SimulationSorting.h"
 #include "../Submenu/TestSorting.cpp"
+#include "../Submenu/SimulationSorting.cpp"
 #include <iostream>
 
 using namespace std;
@@ -42,6 +44,7 @@ void Menu::runMainMenu() {
     string fileToOpen;
     string fileToSave;
     TestSorting<T>* testSorting = nullptr; //Deklaracja wskaźnika na obiekt TestSorting
+    SimulationSorting<T>* simulationSorting = nullptr; //Deklaracja wskaźnika na obiekt SimulationSorting
 
     do {
         number = displayMainMenu();
@@ -103,11 +106,13 @@ void Menu::runMainMenu() {
                 break;
             case 2:
                 cout << "Tryb pracy badawczej\n";
+                simulationSorting = new SimulationSorting<T>();
                 do {
                     simulation = displaySimulationMenu();
                     switch (simulation) {
                         case 1:
                             cout << "Wczytanie danych z pliku\n";
+                            simulationSorting ->sort(0);
                             break;
                         case 2:
                             cout << "Zaladowanie losowych danych\n";
@@ -129,6 +134,8 @@ void Menu::runMainMenu() {
                             break;
                     }
                 } while(simulation != 6);
+                delete simulationSorting;  //Usuniecie obiektu TestSorting
+                simulationSorting = nullptr; //Ustawienie wskaźnika na nullptr
                 break;
             case 3:
                 cout << "Wyjscie to wyboru typu danych\n";
