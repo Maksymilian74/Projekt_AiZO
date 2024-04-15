@@ -16,7 +16,7 @@ FillArray<T>::~FillArray() {}
 template<typename T>
 void FillArray<T>::fillRandom(T* array, int size) {
     if (is_same<T, int>::value) {
-        cout << "Typ danych: int" << endl;
+        //cout << "Typ danych: int" << endl;
         for (int i = 0; i < size; i++) {
             array[i] = rand() % 1000; // Losowa liczba z zakresu 0-999
 

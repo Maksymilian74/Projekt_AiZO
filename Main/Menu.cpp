@@ -111,29 +111,18 @@ void Menu::runMainMenu() {
                     simulation = displaySimulationMenu();
                     switch (simulation) {
                         case 1:
-                            cout << "Wczytanie danych z pliku\n";
-                            simulationSorting ->sort(0);
+                            cout << "Wybor algorytmu sortowania\n";
+                            sorting = displaySortingMenu();
+                            simulationSorting ->sort(sorting);
                             break;
                         case 2:
-                            cout << "Zaladowanie losowych danych\n";
-                            break;
-                        case 3:
-                            cout << "Wykonanie sortowania\n";
-                            break;
-                        case 4:
-                            cout << "Wypisanie danych w tablicy\n";
-                            break;
-                        case 5:
-                            cout << "Zapisanie danych do pliku\n";
-                            break;
-                        case 6:
-                            cout << "Powrot do glownego menu\n";
+                            cout << "Wyjscie do wyboru typu danych\n";
                             break;
                         default:
                             cout << "Bledny numer, podaj prawidlowa wartosc\n";
                             break;
                     }
-                } while(simulation != 6);
+                } while(simulation != 2);
                 delete simulationSorting;  //Usuniecie obiektu TestSorting
                 simulationSorting = nullptr; //Ustawienie wskaźnika na nullptr
                 break;
@@ -169,7 +158,7 @@ int Menu::displayTestingMenu() {
     cout << "4. Wypisanie nieposortowanych danych w tablicy  \n";
     cout << "5. Wypisanie posortowanych danych w tablicy     \n";
     cout << "6. Zapisanie danych do pliku                    \n";
-    cout << "7. Wyjscie do menu glownego                     \n";
+    cout << "7. Wyjscie do wyboru typu danych                \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;
@@ -179,12 +168,8 @@ int Menu::displaySimulationMenu() {
     int task;
     cout << "---------------------------------- \n";
     cout << "      --- Simulation Menu ---      \n";
-    cout << "1. Wczytanie danych z pliku        \n";
-    cout << "2. Zaladowanie losowych danych     \n";
-    cout << "3. Wykonanie sortowania            \n";
-    cout << "4. Wypisanie danych w tablicy      \n";
-    cout << "5. Zapisanie danych do pliku       \n";
-    cout << "6. Wyjscie do menu glownego        \n";
+    cout << "1. Wybor algorytmu sortujacego        \n";
+    cout << "2. Wyjscie do wyboru typu danych      \n";
     cout << "Wpisz numer zadania: ";
     cin >> task;
     return task;
