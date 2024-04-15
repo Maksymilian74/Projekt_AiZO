@@ -12,10 +12,10 @@ using namespace std::chrono;
 // Inicjalizacja tablicy funkcji sortujących
 template<typename T>
 typename SimulationSorting<T>::SortingFunction SimulationSorting<T>::sortingMethods[] = {
-        Sorting::insertionSort,
-        Sorting::heapSort,
-        Sorting::shellSortOne,
-        Sorting::shellSortTwo,
+//        Sorting::insertionSort,
+//        Sorting::heapSort,
+//        Sorting::shellSortOne,
+//        Sorting::shellSortTwo,
         //Sorting::quickSort
 };
 

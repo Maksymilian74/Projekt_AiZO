@@ -1,45 +1,53 @@
 #ifndef SORTING_H
 #define SORTING_H
 
+template<typename T>
 class Sorting {
 public:
+    // Konstruktor
+    Sorting();
+
+    // Konstruktor
+    ~Sorting();
+
+    // Setter dla pivotType
+    void setPivotType(int type);
+
+    // Getter dla pivotType
+    int getPivotType();
+
     // Sortowanie przez wstawianie
-    template<typename T>
-    static void insertionSort(T* tab, int size);
+    void insertionSort(T* tab, int size);
 
     // Sortowanie przez kopcowanie
-    template<typename T>
-    static void heapSort(T* tab, int size);
+    void heapSort(T* tab, int size);
 
     // Sortowanie Shella (wariant I)
-    template<typename T>
-    static void shellSortOne(T* tab, int size);
+    void shellSortOne(T* tab, int size);
 
     // Metoda sortująca Shella dla DynamicArray (2)
-    template<typename T>
-    static void shellSortTwo(T* tab, int size);
+    void shellSortTwo(T* tab, int size);
 
     // Sortowanie quicksort
-    template<typename T>
-    static void quickSort(T* tab, int low, int high, int pivotType);
+    void quickSort(T* tab, int size);
+
+    // Metoda do wywołań rekurencyjnych w quicksort
+    void quickSortHelp(T* tab, int left, int right);
 
     // Metoda sprawdzająca, czy tablica jest posortowana
-    template<typename T>
-    static void isSorted(T* tab, int size);
+    void isSorted(T* tab, int size);
 
  private:
     // Metoda pomocnicza do sortowania przez kopcowanie
-    template<typename T>
-    static void heapHelp(T* tab, int size, int root);
+    void heapHelp(T* tab, int size, int root);
 
     // Metoda pomocnicza do ustalenia pivota
-    template<typename T>
-    static int pivotPosition(int left, int right, int pivotType);
+    int pivotPosition(int left, int right);
 
     // Metoda pomocnicza do dzielenia tablicy dla QuickSort
-    template<typename T>
-    static int partition(T* tab, int low, int high, int pivotType);
+    int partition(T* tab, int low, int high);
 
+    int pivotType; //Pole przechowujące typ pivota
 };
 
 //#include "Sorting.cpp"

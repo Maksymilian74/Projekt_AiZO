@@ -112,7 +112,7 @@ void Menu::runMainMenu() {
                     switch (simulation) {
                         case 1:
                             cout << "Wczytanie danych z pliku\n";
-                            simulationSorting ->sort(0);
+                            //simulationSorting ->sort(0);
                             break;
                         case 2:
                             cout << "Zaladowanie losowych danych\n";

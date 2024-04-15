@@ -135,45 +135,50 @@ void TestSorting<T>::sort(int sortingMethod) {
         for (int i = 0; i < getSizeOfTab(); ++i) {
             sortedData[i] = dataToSort[i];
         }
+        Sorting<T> sorting;
         switch (sortingMethod) {
             case 1:
                 start = high_resolution_clock::now();
-                Sorting::insertionSort(sortedData, getSizeOfTab());
+                sorting.insertionSort(sortedData, getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 2:
                 start = high_resolution_clock::now();
-                Sorting::heapSort(sortedData, getSizeOfTab());
+                sorting.heapSort(sortedData, getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 3:
                 start = high_resolution_clock::now();
-                Sorting::shellSortOne(sortedData, getSizeOfTab());
+                sorting.shellSortOne(sortedData, getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 4:
                 start = high_resolution_clock::now();
-                Sorting::shellSortTwo(sortedData, getSizeOfTab());
+                sorting.shellSortTwo(sortedData, getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 5:
+                sorting.setPivotType(0); // Pivot lewy
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 0); // Pivot lewy
+                sorting.quickSort(sortedData, getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 6:
+                sorting.setPivotType(1); // Pivot prawy
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 1); // Pivot prawy
+                sorting.quickSort(sortedData, getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 7:
+                sorting.setPivotType(2); // Pivot środkowy
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 2); // Pivot środkowy
+                sorting.quickSort(sortedData,  getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 8:
+                sorting.setPivotType(3); // Pivot losowy
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 3); // Pivot losowy
+                sorting.quickSort(sortedData, getSizeOfTab());
                 stop = high_resolution_clock::now();
                 break;
             case 9:
@@ -186,7 +191,7 @@ void TestSorting<T>::sort(int sortingMethod) {
 
         time = duration_cast<duration<double, std::milli>>(stop - start).count();
         cout << "Czas sortowania: " << time << " ms\n";
-        Sorting::isSorted(sortedData, getSizeOfTab());
+        sorting.isSorted(sortedData, getSizeOfTab());
     }
 }
 
