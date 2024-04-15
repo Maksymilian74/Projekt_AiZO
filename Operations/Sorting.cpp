@@ -110,7 +110,7 @@ int Sorting<T>::pivotPosition(int left, int right) {
     type = getPivotType();
     switch (type) {
         case 0:
-            cout<<"left\n";
+            //cout<<"left\n";
             return left; // Pivot lewy
         case 1:
             //cout<<"right\n";
