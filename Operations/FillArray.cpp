@@ -15,19 +15,9 @@ FillArray<T>::~FillArray() {}
 
 template<typename T>
 void FillArray<T>::fillRandom(T* array, int size) {
-    if (is_same<T, int>::value) {
-        //cout << "Typ danych: int" << endl;
-        for (int i = 0; i < size; i++) {
-            array[i] = rand() % 1000; // Losowa liczba z zakresu 0-999
-
-        }
-    } else if (is_same<T, float>::value) {
-        cout << "Typ danych: float" << endl;
-        for (int i = 0; i < size; i++) {
-            array[i] = static_cast<T>(rand() % 1000) + static_cast<T>(rand()) / RAND_MAX; // Losowa liczba z zakresu 0-999 typu float
-        }
+    for (int i = 0; i < size; i++) {
+        array[i] = static_cast<T>(rand() % 10000) + static_cast<T>(rand()) / RAND_MAX; // Losowa liczba z zakresu 0-999 typu float
     }
-
 
 }
 
@@ -46,14 +36,26 @@ void FillArray<T>::fillDescending(T* array, int size) {
 
 template<typename T>
 void FillArray<T>::fillOneThird(T* array, int size) {
-    fillRandom(array, size); // Wypełnienie tablicy losowymi danymi
-    sort(array, array + size / 3); // Posortowanie pierwszego 1/3 tablicy
+    int tmp = size / 3;
+    for(int i = 0; i < tmp; i++) {
+        array[i] = i;
+    }
+
+    for(int i = tmp; i < size; i++) {
+        array[i] = static_cast<T>(rand() % (10000 - tmp + 1) + tmp + static_cast<T>(rand()) / RAND_MAX);
+    }
 }
 
 template<typename T>
 void FillArray<T>::fillTwoThirds(T* array, int size) {
-    fillRandom(array, size); // Wypełnienie tablicy losowymi danymi
-    std::sort(array, array + 2 * size / 3); // Posortowanie pierwszych 2/3 tablicy
+    int tmp = 2 * size / 3;
+    for(int i = 0; i < tmp; i++) {
+        array[i] = i;
+    }
+
+    for(int i = tmp; i < size; i++) {
+        array[i] = static_cast<T>(rand() % (10000 - tmp + 1) + tmp + static_cast<T>(rand()) / RAND_MAX);
+    }
 }
 
 template<typename T>
