@@ -20,7 +20,7 @@ void Sorting::insertionSort(T* tab, int size) {
     }
 }
 
-// Sortowanie Shella (wariant I)
+// Sortowanie Shella (wariant I - gap: N / 2^k)
 template<typename T>
 void Sorting::shellSortOne(T* tab, int size) {
     for (int gap = size / 2; gap > 0; gap /= 2) {
@@ -34,7 +34,7 @@ void Sorting::shellSortOne(T* tab, int size) {
     }
 }
 
-// Sortowanie Shella (wariant II) z użyciem odstępu (2^k) - 1
+// Sortowanie Shella (wariant II - gap: (2^k) - 1)
 template<typename T>
 void Sorting::shellSortTwo(T* tab, int size) {
     int gap = 1;
@@ -45,7 +45,6 @@ void Sorting::shellSortTwo(T* tab, int size) {
         for (int i = gap; i < size; i++) {
             T tmp = tab[i];
             int j = i;
-
             while (j >= gap && tab[j - gap] > tmp) {
                 tab[j] = tab[j - gap];
                 j -= gap;
@@ -56,7 +55,7 @@ void Sorting::shellSortTwo(T* tab, int size) {
     }
 }
 
-// Metoda pomocnicza do sortowania przez kopcowanie
+// Metoda pomocnicza do sortowania przez kopcowanie odpowiedzialna za naprawe kopca w dol
 template<typename T>
 void Sorting::heapFixDown(T* tab, int index, int size) {
     int tmp = index;
@@ -76,7 +75,7 @@ void Sorting::heapFixDown(T* tab, int index, int size) {
     }
 }
 
-// Metoda pomocnicza do sortowania przez kopcowanie
+// Metoda pomocnicza do sortowania przez kopcowanie odpowiedzialna za tworzenie kopca
 template<typename T>
 void Sorting::heapCreate(T* tab, int size) {
     for(int i = (size-2) / 2; i >= 0; i--)
@@ -94,6 +93,7 @@ void Sorting::heapSort(T* tab, int size) {
     }
 }
 
+// Metoda pomocnicza do quicksort z pivotem lewym
 template<typename T>
 int Sorting::partitionLeft(T* tab, int left, int right) {
     T pivot = tab[left];
@@ -119,6 +119,7 @@ int Sorting::partitionLeft(T* tab, int left, int right) {
     }
 }
 
+// Metoda pomocnicza do quicksort z pivotem prawym
 template<typename T>
 int Sorting::partitionRight(T* tab, int left, int right) {
     T pivot = tab[right]; // Wybór pivota
@@ -144,6 +145,7 @@ int Sorting::partitionRight(T* tab, int left, int right) {
     }
 }
 
+// Metoda pomocnicza do quicksort z pivotem srodkowym
 template<typename T>
 int Sorting::partitionMiddle(T* tab, int left, int right) {
     T pivot = tab[(left + right) / 2]; // Wybór pivota
@@ -169,6 +171,7 @@ int Sorting::partitionMiddle(T* tab, int left, int right) {
     }
 }
 
+// Metoda pomocnicza do quicksort z pivotem losowym
 template<typename T>
 int Sorting::partitionRandom(T* tab, int left, int right) {
     T pivot = tab[left + rand() % (right - left + 1)]; // Wybór pivota
@@ -194,6 +197,7 @@ int Sorting::partitionRandom(T* tab, int left, int right) {
     }
 }
 
+// Sortowanie quicksort z pivotem ustawionym po prawej
 template<typename T>
 void Sorting::quickSortLeft(T* tab, int left, int right) {
     if (left < right) {
@@ -206,6 +210,7 @@ void Sorting::quickSortLeft(T* tab, int left, int right) {
     }
 }
 
+// Sortowanie quicksort z pivotem ustawionym po prawej
 template<typename T>
 void Sorting::quickSortRight(T* tab, int left, int right) {
     if (left < right) {
@@ -218,6 +223,7 @@ void Sorting::quickSortRight(T* tab, int left, int right) {
     }
 }
 
+// Sortowanie quicksort z pivotem ustawionym po srodku
 template<typename T>
 void Sorting::quickSortMiddle(T* tab, int left, int right) {
     if (left < right) {
@@ -230,6 +236,7 @@ void Sorting::quickSortMiddle(T* tab, int left, int right) {
     }
 }
 
+// Sortowanie quicksort z pivotem ustawionym losowo
 template<typename T>
 void Sorting::quickSortRandom(T *tab, int left, int right) {
     if (left < right) {
@@ -242,6 +249,7 @@ void Sorting::quickSortRandom(T *tab, int left, int right) {
     }
 }
 
+// Metoda odpowiedzialna za sprawdzenie poprawnosci dzialania algorytmow sortowania
 template<typename T>
 void Sorting::isSorted(T* tab, int size) {
     for (int i = 0; i < size - 1; ++i) {

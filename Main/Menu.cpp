@@ -196,7 +196,6 @@ int Menu::displaySortingMenu() { // Implementacja wyswietlania menu do wyboru sp
     cout << "6.  Quicksort (pivot prawy)                \n";
     cout << "7.  Quicksort (pivot srodkowy)             \n";
     cout << "8.  Quicksort (pivot losowy)               \n";
-    cout << "9.  Wszystkie sortowania (tylko do badania)\n";
     cout << "Wpisz numer zadania:";
     cin >> task;
     return task;

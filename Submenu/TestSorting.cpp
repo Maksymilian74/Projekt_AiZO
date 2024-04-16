@@ -10,11 +10,12 @@
 using namespace std;
 using namespace std::chrono;
 
+// Konstruktor
 template<typename T>
 TestSorting<T>::TestSorting() {
     sizeOfTab = 0;
-    dataToSort = nullptr;
-    sortedData = nullptr;
+    dataToSort = nullptr; // Inicjalizacja wskaznika na tablice przechowujaca nieposortowane dane
+    sortedData = nullptr; // Inicjalizacja wskaznika na tablice przechowujaca posortowane dane
 
     // Inicjalizacja zmiennych do pomiaru czasu
     start = high_resolution_clock::now();
@@ -22,6 +23,7 @@ TestSorting<T>::TestSorting() {
     time = 0;
 }
 
+// Destruktor
 template<typename T>
 TestSorting<T>::~TestSorting() {
     delete [] dataToSort;
@@ -30,16 +32,19 @@ TestSorting<T>::~TestSorting() {
     sortedData = nullptr;
 }
 
+// Setter dla pola przechowujacego rozmiar aktualnej tablicy
 template<typename T>
 void TestSorting<T>::setSizeOfTab(int size) {
     sizeOfTab = size;
 }
 
+// Getter dla pola przechowujacego rozmiar aktualnej tablicy
 template<typename T>
 int TestSorting<T>::getSizeOfTab() {
     return sizeOfTab;
 }
 
+// Metoda odpowiedzialna za wczytanie danych z pliku do tablicy
 template<typename T>
 void TestSorting<T>::loadDataFromFile(string fileToOpen) {
     ifstream file(fileToOpen); // Tworzenie strumienia do odczytu danych z pliku
@@ -60,37 +65,36 @@ void TestSorting<T>::loadDataFromFile(string fileToOpen) {
         return;
     }
 
-    // Alokacja pamięci na tablicę danych
+    // Alokacja pamieci na tablice danych
     if (dataToSort != nullptr) {
         delete[] dataToSort;
         dataToSort = nullptr;
-       // delete[] sortedData;
     }
     dataToSort = new T[getSizeOfTab()];
 
     // Odczytanie danych z pliku i zapisanie ich do tablicy dataToSort
     for (int i = 0; i < sizeOfTab; ++i) {
         if (!(file >> dataToSort[i])) {
-            //cout<< dataToSort[i] <<" ";
             cout << "-------------------------------------------\n";
             cout << "Blad! Nie udalo sie odczytac danych z pliku.\n";
             file.close();
             return;
         }
     }
-
     file.close();
 }
 
+// Metoda odpowiedzialna za wczytanie losowo wygenerowanych danych do tablicy zgodnie z wybrana metoda
 template<typename T>
 void TestSorting<T>::loadRandomData(int size, int fillingMethod) {
     setSizeOfTab(size);
     if (dataToSort != nullptr) {
+        cout << "-------------------------------------------\n";
         cout << "Podmiana starych danych na nowe\n";
         delete[] dataToSort;
         dataToSort = nullptr;
-        //delete[] sortedData;
     } else {
+        cout << "-------------------------------------------\n";
         cout << "Generowanie nowych danych do tablicy\n";
     }
     dataToSort = new T[getSizeOfTab()];
@@ -98,42 +102,51 @@ void TestSorting<T>::loadRandomData(int size, int fillingMethod) {
 
     switch (fillingMethod) {
         case 1:
+            cout << "-------------------------------------------\n";
             cout << "Wybrano losowe wypelnienie tablicy\n";
             fillArray.fillRandom(dataToSort, size);
             break;
         case 2:
+            cout << "-------------------------------------------\n";
             cout << "Wybrano wypelnienie tablicy danymi posortowanymi rosnaco\n";
             fillArray.fillAscending(dataToSort, size);
             break;
         case 3:
+            cout << "-------------------------------------------\n";
             cout << "Wybrano wypelnienie tablicy danymi posortowanymi malejaco\n";
             fillArray.fillDescending(dataToSort, size);
             break;
         case 4:
+            cout << "-------------------------------------------\n";
             cout << "Wybrano wypelnienie tablicy danymi posortowanymi w 33%\n";
             fillArray.fillOneThird(dataToSort, size);
             break;
         case 5:
+            cout << "-------------------------------------------\n";
             cout << "Wybrano wypelnienie tablicy danymi posortowanymi w 66%\n";
             fillArray.fillTwoThirds(dataToSort, size);
             break;
         default:
-            cout << "Nieznany sposób wypelnienia tablicy\n";
+            cout << "-------------------------------------------\n";
+            cout << "Nieznany sposob wypelnienia tablicy\n";
             break;
     }
 }
 
+// Metoda odpowiedzialna za wywolanie odpowiedniego algorytmu sortujacego
 template<typename T>
 void TestSorting<T>::sort(int sortingMethod) {
+    cout << "-------------------------------------------\n";
     cout << "Wykonanie sortowania\n";
     if (dataToSort == nullptr) {
+        cout << "-------------------------------------------\n";
         cout << "Blad! Dane nie zostaly jeszcze wygenerowane!\n";
     } else {
         if(sortedData != nullptr) {
             delete[] sortedData;
             sortedData = nullptr;
         }
-        // Skopiowanie danych do tablicy sortedData
+        // Skopiowanie nieposortowanych danych do tablicy sortedData
         sortedData = new T[getSizeOfTab()];
         for (int i = 0; i < getSizeOfTab(); ++i) {
             sortedData[i] = dataToSort[i];
@@ -179,10 +192,8 @@ void TestSorting<T>::sort(int sortingMethod) {
                 Sorting::quickSortRandom(sortedData, 0, getSizeOfTab() - 1); // Pivot losowy
                 stop = high_resolution_clock::now();
                 break;
-            case 9:
-                cout << "Wszystkie sortowania dostepne sa tylko w trybie badawczym!\n";
-                break;
             default:
+                cout << "-------------------------------------------\n";
                 cout << "Nieznany rodzaj sortowania\n";
                 break;
         }
@@ -193,9 +204,11 @@ void TestSorting<T>::sort(int sortingMethod) {
     }
 }
 
+// Metoda odpowiedzialna za wyswietlenie nieposortowanej tablicy
 template<typename T>
 void TestSorting<T>::displayArrayToSort() {
     if (dataToSort == nullptr) {
+        cout << "-------------------------------------------\n";
         cout << "Dane nie zostaly jeszcze wygenerowane\n";
     } else {
         for (int i = 0; i < getSizeOfTab(); ++i) {
@@ -205,9 +218,11 @@ void TestSorting<T>::displayArrayToSort() {
     }
 }
 
+// Metoda odpowiedzialna za wyswietlenie posortowanej tablicy
 template<typename T>
 void TestSorting<T>::displayArraySorted() {
     if (sortedData == nullptr) {
+        cout << "-------------------------------------------\n";
         cout << "Dane nie zostaly jeszcze posortowane\n";
     } else {
         for (int i = 0; i < getSizeOfTab(); ++i) {
@@ -217,15 +232,19 @@ void TestSorting<T>::displayArraySorted() {
     }
 }
 
+// Metoda odpowiedzialna za zapisanie posortowanej tablicy do pliku
 template<typename T>
 void TestSorting<T>::saveDataToFile(string fileToSave) {
     if (sortedData == nullptr) {
+        cout << "-------------------------------------------\n";
         cout << "Dane nie zostaly jeszcze posortowane\n";
     } else {
+        cout << "-------------------------------------------\n";
         cout << "Zapisanie danych do pliku\n";
 
         ofstream file(fileToSave); // Tworzenie strumienia do zapisu danych do pliku
         if (!file.is_open()) {
+            cout << "-------------------------------------------\n";
             cout << "Blad! Nie udalo sie otworzyc pliku.\n";
             return;
         }
@@ -236,10 +255,8 @@ void TestSorting<T>::saveDataToFile(string fileToSave) {
         // Zapisanie posortowanej tablicy do pliku
             for (int i = 0; i < getSizeOfTab(); i++) {
                 file << sortedData[i] << " ";
-
             file << "\n";
         }
-
         file.close();
     }
 }

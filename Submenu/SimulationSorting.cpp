@@ -7,21 +7,24 @@
 using namespace std;
 using namespace std::chrono;
 
+// Konstruktor
 template<typename T>
 SimulationSorting<T>::SimulationSorting() {
 }
 
+// Destruktor
 template<typename T>
 SimulationSorting<T>::~SimulationSorting() {
 }
 
+// Metoda odpowiedzialna za przeprowadzenie badania za pomoca wybranego algorytmu
 template<typename T>
 void SimulationSorting<T>::sort(int methodIterator) {
     int size;
     int iterator = 100;
     FillArray<T> fillArray;
     for(int fillingIterator = 0; fillingIterator < 5; fillingIterator++) {
-        switch(fillingIterator) {
+        switch(fillingIterator) { // Wyswietlenie odpowiedniego komunikatu zgodnie ze sposobem wypelnienia tablicy
             case 0:
                 cout << endl;
                 cout << "Wypelnienie losowe\n";
@@ -47,7 +50,7 @@ void SimulationSorting<T>::sort(int methodIterator) {
                 break;
         }
         for(int sizeIterator = 0; sizeIterator < 7; sizeIterator++) {
-            switch(sizeIterator) {
+            switch(sizeIterator) { // Wyswietlenie odpowiedniego komunikatu zgodnie z aktualnym rozmiarem tablicy
                 case 0:
                     cout << "1000: ";
                     break;
@@ -75,7 +78,7 @@ void SimulationSorting<T>::sort(int methodIterator) {
             }
             time = 0;
             for(int i = 0; i < iterator; i++) {
-                switch(sizeIterator) {
+                switch(sizeIterator) { // Wybranie odpowiedniego rozmiaru tablicy
                     case 0:
                         size = 1000;
                         break;
@@ -98,13 +101,14 @@ void SimulationSorting<T>::sort(int methodIterator) {
                         size = 100000;
                         break;
                     default:
+                        cout << "-------------------------------------------\n";
                         cout << "Zly rozmiar!\n";
                         break;
                 }
 
-                T* dataToSort = new T[size];
+                T* dataToSort = new T[size]; // Alokacja pamieci nowej tablicy
 
-                switch(fillingIterator) {
+                switch(fillingIterator) { // Wybranie odpowiedniego sposobu wypelnienia tablicy
                     case 0:
                         fillArray.fillRandom(dataToSort, size);
                         break;
@@ -121,11 +125,12 @@ void SimulationSorting<T>::sort(int methodIterator) {
                         fillArray.fillTwoThirds(dataToSort, size);
                         break;
                     default:
+                        cout << "-------------------------------------------\n";
                         cout << "Zly typ wypelnienia!\n";
                         break;
                 }
 
-                switch (methodIterator) {
+                switch (methodIterator) { // Wybranie odpowiedniego algorytmu sortujacego
                     case 1:
                         start = high_resolution_clock::now();
                         Sorting::insertionSort(dataToSort, size);
@@ -167,12 +172,13 @@ void SimulationSorting<T>::sort(int methodIterator) {
                         stop = high_resolution_clock::now();
                         break;
                     default:
+                        cout << "-------------------------------------------\n";
                         cout << "Nieznany rodzaj sortowania\n";
                         break;
                 }
-                time += duration_cast<duration<double, std::milli>>(stop - start).count();
+                time += duration_cast<duration<double, std::milli>>(stop - start).count(); // Obliczenie czasu danego sortowania
 
-                delete[] dataToSort;
+                delete[] dataToSort; // Zwolnienie pamieci po danej tablicy
             }
             cout << "czas sortowania: " << time/iterator << " ms\n";
         }

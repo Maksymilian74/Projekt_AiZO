@@ -1,3 +1,9 @@
+/*
+ * Klasa Sorting odpowiedzialna jest za przeprowadzenie sortowania tablicy
+ * za pomoca wybranego algorytmu sortowania, dodatkowo sprawdza poprawnosc
+ * dzialania algorytmow sortujacych
+ */
+
 #ifndef SORTING_H
 #define SORTING_H
 
@@ -11,11 +17,11 @@ public:
     template<typename T>
     static void heapSort(T* tab, int size);
 
-    // Sortowanie Shella (wariant I)
+    // Sortowanie Shella (wariant I - gap: N / 2^k)
     template<typename T>
     static void shellSortOne(T* tab, int size);
 
-    // Metoda sortująca Shella dla DynamicArray (2)
+    // Metoda sortująca Shella  (wariant II - gap: (2^k) - 1)
     template<typename T>
     static void shellSortTwo(T* tab, int size);
 
@@ -40,11 +46,11 @@ public:
     static void isSorted(T* tab, int size);
 
  private:
-    // Metoda pomocnicza do sortowania przez kopcowanie
+    // Metoda pomocnicza do kopcowania - tworzenie kopca
     template<typename T>
     static void heapCreate(T* tab, int size);
 
-    // Metoda pomocnicza do sortowania przez kopcowanie
+    // Metoda pomocnicza do kopcowania - naprawa kopca w dol
     template<typename T>
     static void heapFixDown(T* tab, int index, int size);
 

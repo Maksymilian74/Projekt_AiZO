@@ -1,3 +1,10 @@
+/*
+ * Klasa TestSorting odpowiedzialna jest za zarzadzanie trybem testowym,
+ * zawierajaca odczyt danych z pliku, zapis danych do pliku, wypelnienie tablicy
+ * zgodnie z wyborem uzytkownika, posortowanie tablicy wybranym algorytmem sortowania
+ * oraz wyswietlenie nieposortowanej lub posortowanej tablicy
+ */
+
 #ifndef TESTSORTING_H
 #define TESTSORTING_H
 
@@ -11,25 +18,43 @@ using namespace std::chrono;
 template<typename T>
 class TestSorting {
 public:
-    TestSorting(); // Konstruktor
-    ~TestSorting(); // Destruktor
+    // Konstruktor
+    TestSorting();
 
-    void loadDataFromFile(string fileToOpen); // Metoda wczytująca dane z pliku
-    void loadRandomData(int size, int fillingMethod); // Metoda generująca losowe dane do sortowania
-    void sort(int sortingMethod); // Metoda wykonująca sortowanie i mierząca czas
-    void displayArrayToSort(); // Metoda wyświetlająca zawartość tablicy przed sortowaniem
-    void displayArraySorted(); // Metoda wyświetlająca zawartość tablicy po sortowaniu
-    void saveDataToFile(string fileToSave); // Metoda zapisująca dane do pliku
-    void setSizeOfTab(int size); //Metoda ustawiająca wielkosc tablicy
-    int getSizeOfTab(); //Metoda do zwrocenia rozmiaru tablicy
+    // Destruktor
+    ~TestSorting();
+
+    // Metoda odpowiedzialna za wczytanie danych z pliku
+    void loadDataFromFile(string fileToOpen);
+
+    // Metoda odpowiedzialna za generowanie losowych danych do tablicy
+    void loadRandomData(int size, int fillingMethod);
+
+    // Metoda odpowiedzialna za wywolanie odpowiedniego algorytmu sortowania i pomiaru czasu
+    void sort(int sortingMethod);
+
+    // Metoda odpowiedzialna za wyswietlenie zawartosci nieposortowanej tablicy
+    void displayArrayToSort();
+
+    // Metoda odpowiedzialna za wyswietlenie zawartosci posortowanej tablicy
+    void displayArraySorted();
+
+    // Metoda odpowiedzialna za zapis danych do pliku
+    void saveDataToFile(string fileToSave);
+
+    // Setter pola przechowujacego rozmiar aktualnej tablicy
+    void setSizeOfTab(int size);
+
+    // Getter pola przechowujacego rozmiar aktualnej tablicy
+    int getSizeOfTab();
 
 private:
-    int sizeOfTab; //Rozmiar tablicy
-    T* dataToSort; // Tablica przechowująca dane do posortowania
-    T* sortedData; // Kopia tablicy danych do posortowania
-    std::chrono::high_resolution_clock::time_point start; // Początek pomiaru czasu
-    std::chrono::high_resolution_clock::time_point stop; // Koniec pomiaru czasu
-    double time; // Czas sortowania
+    int sizeOfTab; // Pole przechowujace rozmiar aktualnej tablicy
+    T* dataToSort; // Wskaznik na tablice przechowujaca nieposortowane dane
+    T* sortedData; // Wskaznik na tablice przechowujaca nieposortowane dane
+    std::chrono::high_resolution_clock::time_point start; // Zmienna przechowujaca początek pomiaru czasu
+    std::chrono::high_resolution_clock::time_point stop; // Zmienna przechowujaca koniec pomiaru czasu
+    double time; // Zmienna przechowujaca czas sortowania
 };
 
 #endif

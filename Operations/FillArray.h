@@ -1,8 +1,13 @@
+/*
+ * Klasa FillArray odpowiedzialna jest za wypelnianie tablic
+ * zgodnie z wyborem uzytkownika lub potrzeba w trybie badawczym
+ */
+
 #ifndef FILLARRAY_H
 #define FILLARRAY_H
 
-#include <cstdlib> // Do wykorzystania funkcji rand()
-#include <ctime> // Do inicjalizacji generatora liczb losowych
+#include <cstdlib>
+#include <ctime>
 #include <algorithm>
 
 template<typename T>
@@ -14,19 +19,19 @@ public:
     // Destruktor
     ~FillArray();
 
-    // Metoda wypełniająca tablicę losowymi danymi
+    // Metoda wypelniajaca tablice losowymi danymi
     void fillRandom(T* array, int size);
 
-    // Metoda wypełniająca tablicę danymi posortowanymi rosnąco
+    // Metoda wypelniajaca tablice danymi posortowanymi rosnaco
     void fillAscending(T* array, int size);
 
-    // Metoda wypełniająca tablicę danymi posortowanymi malejąco
+    // Metoda wypelniajaca tablice danymi posortowanymi malejaco
     void fillDescending(T* array, int size);
 
-    // Metoda wypełniająca tablicę danymi posortowanymi w 33%
+    // Metoda wypelniajaca tablice danymi posortowanymi w 33%
     void fillOneThird(T* array, int size);
 
-    // Metoda wypełniająca tablicę danymi posortowanymi w 66%
+    // Metoda wypelniajaca tablice danymi posortowanymi w 66%
     void fillTwoThirds(T* array, int size);
 
 private:
@@ -34,4 +39,4 @@ private:
     void initRandomSeed();
 };
 
-#endif // FILLARRAY_H
+#endif
