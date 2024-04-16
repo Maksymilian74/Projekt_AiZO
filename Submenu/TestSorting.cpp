@@ -16,7 +16,7 @@ TestSorting<T>::TestSorting() {
     dataToSort = nullptr;
     sortedData = nullptr;
 
-    // Inicjalizacja czasu
+    // Inicjalizacja zmiennych do pomiaru czasu
     start = high_resolution_clock::now();
     stop = high_resolution_clock::now();
     time = 0;
@@ -44,6 +44,7 @@ template<typename T>
 void TestSorting<T>::loadDataFromFile(string fileToOpen) {
     ifstream file(fileToOpen); // Tworzenie strumienia do odczytu danych z pliku
     if (!file.is_open()) {
+        cout << "-------------------------------------------\n";
         cout << "Blad! Nie udalo sie otworzyc pliku.\n";
         return;
     }
@@ -53,6 +54,7 @@ void TestSorting<T>::loadDataFromFile(string fileToOpen) {
     file >> size;
     setSizeOfTab(size);
     if (size <= 0) {
+        cout << "-------------------------------------------\n";
         cout << "Blad! Nieprawidlowy rozmiar tablicy.\n";
         file.close();
         return;
@@ -69,7 +71,8 @@ void TestSorting<T>::loadDataFromFile(string fileToOpen) {
     // Odczytanie danych z pliku i zapisanie ich do tablicy dataToSort
     for (int i = 0; i < sizeOfTab; ++i) {
         if (!(file >> dataToSort[i])) {
-            cout<< dataToSort[i] <<" ";
+            //cout<< dataToSort[i] <<" ";
+            cout << "-------------------------------------------\n";
             cout << "Blad! Nie udalo sie odczytac danych z pliku.\n";
             file.close();
             return;
@@ -195,7 +198,6 @@ void TestSorting<T>::displayArrayToSort() {
     if (dataToSort == nullptr) {
         cout << "Dane nie zostaly jeszcze wygenerowane\n";
     } else {
-        cout << "Wypisanie nieposortowanych danych w tablicy\n";
         for (int i = 0; i < getSizeOfTab(); ++i) {
             cout << dataToSort[i] << " ";
         }
@@ -208,7 +210,6 @@ void TestSorting<T>::displayArraySorted() {
     if (sortedData == nullptr) {
         cout << "Dane nie zostaly jeszcze posortowane\n";
     } else {
-        cout << "Wypisanie posortowanych danych w tablicy\n";
         for (int i = 0; i < getSizeOfTab(); ++i) {
             cout << sortedData[i] << " ";
         }

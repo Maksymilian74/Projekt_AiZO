@@ -1,17 +1,16 @@
 #include "Menu.h"
-#include "../Operations/Sorting.cpp"
 
 class Main {
 public:
-    void run() {
+    void run() {  // Metoda uruchamiajaca program
        Menu menu;
-       menu.selectDataType();
+       menu.selectDataType(); // Wywolanie metody do wyboru typu danych
     }
 };
 
-int main() {
+int main() {  // Glowna metoda programu
     Main main;
-    main.run();
+    main.run(); // Wywolanie metody rozpoczynajacej program
     return 0;
 }
 

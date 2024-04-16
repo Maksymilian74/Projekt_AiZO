@@ -42,7 +42,11 @@ public:
  private:
     // Metoda pomocnicza do sortowania przez kopcowanie
     template<typename T>
-    static void heapHelp(T* tab, int size, int root);
+    static void heapCreate(T* tab, int size);
+
+    // Metoda pomocnicza do sortowania przez kopcowanie
+    template<typename T>
+    static void heapFixDown(T* tab, int index, int size);
 
     // Metoda pomocnicza do dzielenia tablicy dla QuickSort z lewym pivotem
     template<typename T>
@@ -61,7 +65,5 @@ public:
     static int partitionRandom(T* tab, int low, int high);
 
 };
-
-//#include "Sorting.cpp"
 
 #endif

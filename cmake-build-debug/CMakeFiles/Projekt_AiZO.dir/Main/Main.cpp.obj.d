@@ -153,14 +153,4 @@ CMakeFiles/Projekt_AiZO.dir/Main/Main.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdint.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/limits \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ctime \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/parse_numbers.h \
- C:/Users/szewc/CLionProjects/Projekt_AiZO/Operations/Sorting.cpp \
- C:/Users/szewc/CLionProjects/Projekt_AiZO/Operations/Sorting.h \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/algorithmfwd.h \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_heap.h \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h
+ C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/parse_numbers.h

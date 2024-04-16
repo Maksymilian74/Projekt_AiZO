@@ -8,45 +8,15 @@ using namespace std;
 // Sortowanie przez wstawianie
 template<typename T>
 void Sorting::insertionSort(T* tab, int size) {
+    T key;
     for (int i = 1; i < size; i++) {
-        T key = tab[i];
+        key = tab[i];
         int j = i - 1;
         while (j >= 0 && tab[j] > key) {
             tab[j + 1] = tab[j];
             j--;
         }
         tab[j + 1] = key;
-    }
-}
-
-// Metoda pomocnicza do sortowania przez kopcowanie
-template<typename T>
-void Sorting::heapHelp(T* tab, int size, int root) {
-    int tmp = root;
-    int left = 2 * root + 1;
-    int right = 2 * root + 2;
-
-    if (left < size && tab[left] > tab[tmp])
-        tmp = left;
-
-    if (right < size && tab[right] > tab[tmp])
-        tmp = right;
-
-    if (tmp != root) {
-        swap(tab[root], tab[tmp]);
-        heapHelp<T>(tab, size, tmp);
-    }
-}
-
-// Sortowanie przez kopcowanie
-template<typename T>
-void Sorting::heapSort(T* tab, int size) {
-    for (int i = size / 2 - 1; i >= 0; i--)
-        heapHelp<T>(tab, size, i);
-
-    for (int i = size - 1; i > 0; i--) {
-        swap(tab[0], tab[i]);
-        heapHelp<T>(tab, i, 0);
     }
 }
 
@@ -72,7 +42,7 @@ void Sorting::shellSortTwo(T* tab, int size) {
         gap = 2 * gap + 1;
 
     while (gap > 0) {
-        for (int i = gap; i < size; ++i) {
+        for (int i = gap; i < size; i++) {
             T tmp = tab[i];
             int j = i;
 
@@ -86,144 +56,142 @@ void Sorting::shellSortTwo(T* tab, int size) {
     }
 }
 
+// Metoda pomocnicza do sortowania przez kopcowanie
+template<typename T>
+void Sorting::heapFixDown(T* tab, int index, int size) {
+    int tmp = index;
+    int leftChild = 2 * index + 1; // Indeks lewego dziecka w kopcu
+    int rightChild = 2 * index + 2; // Indeks prawego dziecka w kopcu
+
+    if (leftChild < size && tab[leftChild] > tab[tmp])
+        tmp = leftChild;
+
+    if (rightChild < size && tab[rightChild] > tab[tmp])
+        tmp = rightChild;
+
+    if (tmp != index) {
+        swap(tab[index], tab[tmp]);
+
+        heapFixDown(tab, tmp, size);
+    }
+}
+
+// Metoda pomocnicza do sortowania przez kopcowanie
+template<typename T>
+void Sorting::heapCreate(T* tab, int size) {
+    for(int i = (size-2) / 2; i >= 0; i--)
+        heapFixDown(tab, i, size);
+}
+
+// Sortowanie przez kopcowanie
+template<typename T>
+void Sorting::heapSort(T* tab, int size) {
+    heapCreate(tab, size);
+
+    for(int i = size - 1; i > 0; i--) {
+        swap(tab[0], tab[i]);
+        heapFixDown(tab, 0, i);
+    }
+}
+
 template<typename T>
 int Sorting::partitionLeft(T* tab, int left, int right) {
-    int pivotIndex = left;
-    T pivot = tab[pivotIndex]; // Wybór pivota
-
-    // Zamiana miejscami pivota z elementem na pozycji left
-    swap(tab[left], tab[pivotIndex]);
-
-    int l = left + 1;
+    T pivot = tab[left];
+    int l = left;
     int r = right;
 
     while (true) {
-        // Przesuwanie l w prawo, dopóki nie znajdziemy elementu większego od pivota
-        while (l <= r && tab[l] <= pivot)
+        while (tab[l] < pivot)
             l++;
-
-        // Przesuwanie r w lewo, dopóki nie znajdziemy elementu mniejszego od pivota
-        while (l <= r && tab[r] > pivot)
+        while (tab[r] > pivot)
             r--;
+        if (l < r) {
+            swap(tab[l], tab[r]);
+            l++;
+            r--;
+        }
+        else {
+            if (r == right)
+                r--;
+            return r;
+        }
 
-        // Jeśli l i r się minęły, to przerywamy pętlę
-        if (l >= r)
-            break;
-
-        // Zamiana miejscami elementów arr[l] i arr[r]
-        swap(tab[l], tab[r]);
     }
-
-    // Zamiana miejscami pivota z elementem na pozycji r
-    swap(tab[left], tab[r]);
-
-    // Zwracamy indeks, na którym znajduje się pivot
-    return r;
 }
 
 template<typename T>
 int Sorting::partitionRight(T* tab, int left, int right) {
-    int pivotIndex = right;
-    T pivot = tab[pivotIndex]; // Wybór pivota
-
-    // Zamiana miejscami pivota z elementem na pozycji left
-    swap(tab[left], tab[pivotIndex]);
-
-    int l = left + 1;
+    T pivot = tab[right]; // Wybór pivota
+    int l = left;
     int r = right;
 
     while (true) {
-        // Przesuwanie l w prawo, dopóki nie znajdziemy elementu większego od pivota
-        while (l <= r && tab[l] <= pivot)
+        while (tab[l] < pivot)
             l++;
-
-        // Przesuwanie r w lewo, dopóki nie znajdziemy elementu mniejszego od pivota
-        while (l <= r && tab[r] > pivot)
+        while (tab[r] > pivot)
             r--;
+        if (l < r) {
+            swap(tab[l], tab[r]);
+            l++;
+            r--;
+        }
+        else {
+            if (r == right)
+                r--;
+            return r;
+        }
 
-        // Jeśli l i r się minęły, to przerywamy pętlę
-        if (l >= r)
-            break;
-
-        // Zamiana miejscami elementów arr[l] i arr[r]
-        swap(tab[l], tab[r]);
     }
-
-    // Zamiana miejscami pivota z elementem na pozycji r
-    swap(tab[left], tab[r]);
-
-    // Zwracamy indeks, na którym znajduje się pivot
-    return r;
 }
 
 template<typename T>
 int Sorting::partitionMiddle(T* tab, int left, int right) {
-    int pivotIndex = (left + right) / 2;
-    T pivot = tab[pivotIndex]; // Wybór pivota
-
-    // Zamiana miejscami pivota z elementem na pozycji left
-    swap(tab[left], tab[pivotIndex]);
-
-    int l = left + 1;
+    T pivot = tab[(left + right) / 2]; // Wybór pivota
+    int l = left;
     int r = right;
 
     while (true) {
-        // Przesuwanie l w prawo, dopóki nie znajdziemy elementu większego od pivota
-        while (l <= r && tab[l] <= pivot)
+        while (tab[l] < pivot)
             l++;
-
-        // Przesuwanie r w lewo, dopóki nie znajdziemy elementu mniejszego od pivota
-        while (l <= r && tab[r] > pivot)
+        while (tab[r] > pivot)
             r--;
+        if (l < r) {
+            swap(tab[l], tab[r]);
+            l++;
+            r--;
+        }
+        else {
+            if (r == right)
+                r--;
+            return r;
+        }
 
-        // Jeśli l i r się minęły, to przerywamy pętlę
-        if (l >= r)
-            break;
-
-        // Zamiana miejscami elementów arr[l] i arr[r]
-        swap(tab[l], tab[r]);
     }
-
-    // Zamiana miejscami pivota z elementem na pozycji r
-    swap(tab[left], tab[r]);
-
-    // Zwracamy indeks, na którym znajduje się pivot
-    return r;
 }
 
 template<typename T>
 int Sorting::partitionRandom(T* tab, int left, int right) {
-    int pivotIndex = left + rand() % (right - left + 1);
-    T pivot = tab[pivotIndex]; // Wybór pivota
-
-    // Zamiana miejscami pivota z elementem na pozycji left
-    swap(tab[left], tab[pivotIndex]);
-
-    int l = left + 1;
+    T pivot = tab[left + rand() % (right - left + 1)]; // Wybór pivota
+    int l = left;
     int r = right;
 
     while (true) {
-        // Przesuwanie l w prawo, dopóki nie znajdziemy elementu większego od pivota
-        while (l <= r && tab[l] <= pivot)
+        while (tab[l] < pivot)
             l++;
-
-        // Przesuwanie r w lewo, dopóki nie znajdziemy elementu mniejszego od pivota
-        while (l <= r && tab[r] > pivot)
+        while (tab[r] > pivot)
             r--;
+        if (l < r) {
+            swap(tab[l], tab[r]);
+            l++;
+            r--;
+        }
+        else {
+            if (r == right)
+                r--;
+            return r;
+        }
 
-        // Jeśli l i r się minęły, to przerywamy pętlę
-        if (l >= r)
-            break;
-
-        // Zamiana miejscami elementów arr[l] i arr[r]
-        swap(tab[l], tab[r]);
     }
-
-    // Zamiana miejscami pivota z elementem na pozycji r
-    swap(tab[left], tab[r]);
-
-    // Zwracamy indeks, na którym znajduje się pivot
-    return r;
 }
 
 template<typename T>
@@ -233,10 +201,9 @@ void Sorting::quickSortLeft(T* tab, int left, int right) {
         int pivotIndex = partitionLeft<T>(tab, left, right);
 
         // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
-        quickSortLeft<T>(tab, left, pivotIndex - 1);
+        quickSortLeft<T>(tab, left, pivotIndex);
         quickSortLeft<T>(tab, pivotIndex + 1, right);
     }
-    //isSorted<T>(tab, right + 1);
 }
 
 template<typename T>
@@ -246,10 +213,9 @@ void Sorting::quickSortRight(T* tab, int left, int right) {
         int pivotIndex = partitionRight<T>(tab, left, right);
 
         // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
-        quickSortRight<T>(tab, left, pivotIndex - 1);
+        quickSortRight<T>(tab, left, pivotIndex);
         quickSortRight<T>(tab, pivotIndex + 1, right);
     }
-    //isSorted<T>(tab, right + 1);
 }
 
 template<typename T>
@@ -259,10 +225,9 @@ void Sorting::quickSortMiddle(T* tab, int left, int right) {
         int pivotIndex = partitionMiddle<T>(tab, left, right);
 
         // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
-        quickSortMiddle<T>(tab, left, pivotIndex - 1);
+        quickSortMiddle<T>(tab, left, pivotIndex);
         quickSortMiddle<T>(tab, pivotIndex + 1, right);
     }
-    //isSorted<T>(tab, right + 1);
 }
 
 template<typename T>
@@ -272,19 +237,20 @@ void Sorting::quickSortRandom(T *tab, int left, int right) {
         int pivotIndex = partitionRandom<T>(tab, left, right);
 
         // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
-        quickSortRandom<T>(tab, left, pivotIndex - 1);
+        quickSortRandom<T>(tab, left, pivotIndex);
         quickSortRandom<T>(tab, pivotIndex + 1, right);
     }
-    //isSorted<T>(tab, right + 1);
 }
 
 template<typename T>
 void Sorting::isSorted(T* tab, int size) {
     for (int i = 0; i < size - 1; ++i) {
         if (tab[i] > tab[i + 1]) {
+            cout << "-------------------------------------------\n";
             cout << "Tablica NIE JEST poprawnie posortowana!!!\n";
         }
     }
+    cout << "-------------------------------------------\n";
     cout << "Sortowanie przebieglo pomyslnie\n";
 }
 
