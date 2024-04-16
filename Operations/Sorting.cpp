@@ -87,32 +87,12 @@ void Sorting::shellSortTwo(T* tab, int size) {
 }
 
 template<typename T>
-int Sorting::pivotPosition(int left, int right, int pivotType) {
-    switch (pivotType) {
-        case 0:
-            //cout<<"left\n";
-            return left; // Pivot lewy
-        case 1:
-            //cout<<"right\n";
-            return right; // Pivot prawy
-        case 2:
-            //cout<<"middle\n";
-            return (left + right) / 2;  // Pivot środkowy
-        case 3:
-            //cout<<"random\n";
-            return left + rand() % (right - left + 1);  // Pivot losowy
-        default:
-           return left;
-    }
-}
-
-template<typename T>
-int Sorting::partition(T* tab, int left, int right, int pivotType) {
-    int pivotIndex = pivotPosition<T>(left, right, pivotType);
+int Sorting::partitionLeft(T* tab, int left, int right) {
+    int pivotIndex = left;
     T pivot = tab[pivotIndex]; // Wybór pivota
 
     // Zamiana miejscami pivota z elementem na pozycji left
-    std::swap(tab[left], tab[pivotIndex]);
+    swap(tab[left], tab[pivotIndex]);
 
     int l = left + 1;
     int r = right;
@@ -131,25 +111,169 @@ int Sorting::partition(T* tab, int left, int right, int pivotType) {
             break;
 
         // Zamiana miejscami elementów arr[l] i arr[r]
-        std::swap(tab[l], tab[r]);
+        swap(tab[l], tab[r]);
     }
 
     // Zamiana miejscami pivota z elementem na pozycji r
-    std::swap(tab[left], tab[r]);
+    swap(tab[left], tab[r]);
 
     // Zwracamy indeks, na którym znajduje się pivot
     return r;
 }
 
 template<typename T>
-void Sorting::quickSort(T* tab, int left, int right, int pivotType) {
+int Sorting::partitionRight(T* tab, int left, int right) {
+    int pivotIndex = right;
+    T pivot = tab[pivotIndex]; // Wybór pivota
+
+    // Zamiana miejscami pivota z elementem na pozycji left
+    swap(tab[left], tab[pivotIndex]);
+
+    int l = left + 1;
+    int r = right;
+
+    while (true) {
+        // Przesuwanie l w prawo, dopóki nie znajdziemy elementu większego od pivota
+        while (l <= r && tab[l] <= pivot)
+            l++;
+
+        // Przesuwanie r w lewo, dopóki nie znajdziemy elementu mniejszego od pivota
+        while (l <= r && tab[r] > pivot)
+            r--;
+
+        // Jeśli l i r się minęły, to przerywamy pętlę
+        if (l >= r)
+            break;
+
+        // Zamiana miejscami elementów arr[l] i arr[r]
+        swap(tab[l], tab[r]);
+    }
+
+    // Zamiana miejscami pivota z elementem na pozycji r
+    swap(tab[left], tab[r]);
+
+    // Zwracamy indeks, na którym znajduje się pivot
+    return r;
+}
+
+template<typename T>
+int Sorting::partitionMiddle(T* tab, int left, int right) {
+    int pivotIndex = (left + right) / 2;
+    T pivot = tab[pivotIndex]; // Wybór pivota
+
+    // Zamiana miejscami pivota z elementem na pozycji left
+    swap(tab[left], tab[pivotIndex]);
+
+    int l = left + 1;
+    int r = right;
+
+    while (true) {
+        // Przesuwanie l w prawo, dopóki nie znajdziemy elementu większego od pivota
+        while (l <= r && tab[l] <= pivot)
+            l++;
+
+        // Przesuwanie r w lewo, dopóki nie znajdziemy elementu mniejszego od pivota
+        while (l <= r && tab[r] > pivot)
+            r--;
+
+        // Jeśli l i r się minęły, to przerywamy pętlę
+        if (l >= r)
+            break;
+
+        // Zamiana miejscami elementów arr[l] i arr[r]
+        swap(tab[l], tab[r]);
+    }
+
+    // Zamiana miejscami pivota z elementem na pozycji r
+    swap(tab[left], tab[r]);
+
+    // Zwracamy indeks, na którym znajduje się pivot
+    return r;
+}
+
+template<typename T>
+int Sorting::partitionRandom(T* tab, int left, int right) {
+    int pivotIndex = left + rand() % (right - left + 1);
+    T pivot = tab[pivotIndex]; // Wybór pivota
+
+    // Zamiana miejscami pivota z elementem na pozycji left
+    swap(tab[left], tab[pivotIndex]);
+
+    int l = left + 1;
+    int r = right;
+
+    while (true) {
+        // Przesuwanie l w prawo, dopóki nie znajdziemy elementu większego od pivota
+        while (l <= r && tab[l] <= pivot)
+            l++;
+
+        // Przesuwanie r w lewo, dopóki nie znajdziemy elementu mniejszego od pivota
+        while (l <= r && tab[r] > pivot)
+            r--;
+
+        // Jeśli l i r się minęły, to przerywamy pętlę
+        if (l >= r)
+            break;
+
+        // Zamiana miejscami elementów arr[l] i arr[r]
+        swap(tab[l], tab[r]);
+    }
+
+    // Zamiana miejscami pivota z elementem na pozycji r
+    swap(tab[left], tab[r]);
+
+    // Zwracamy indeks, na którym znajduje się pivot
+    return r;
+}
+
+template<typename T>
+void Sorting::quickSortLeft(T* tab, int left, int right) {
     if (left < right) {
         // Podzial tablicy i znalezienie punkt podziału (pivot)
-        int pivotIndex = partition<T>(tab, left, right, pivotType);
+        int pivotIndex = partitionLeft<T>(tab, left, right);
 
         // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
-        quickSort<T>(tab, left, pivotIndex - 1, pivotType);
-        quickSort<T>(tab, pivotIndex + 1, right, pivotType);
+        quickSortLeft<T>(tab, left, pivotIndex - 1);
+        quickSortLeft<T>(tab, pivotIndex + 1, right);
+    }
+    //isSorted<T>(tab, right + 1);
+}
+
+template<typename T>
+void Sorting::quickSortRight(T* tab, int left, int right) {
+    if (left < right) {
+        // Podzial tablicy i znalezienie punkt podziału (pivot)
+        int pivotIndex = partitionRight<T>(tab, left, right);
+
+        // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
+        quickSortRight<T>(tab, left, pivotIndex - 1);
+        quickSortRight<T>(tab, pivotIndex + 1, right);
+    }
+    //isSorted<T>(tab, right + 1);
+}
+
+template<typename T>
+void Sorting::quickSortMiddle(T* tab, int left, int right) {
+    if (left < right) {
+        // Podzial tablicy i znalezienie punkt podziału (pivot)
+        int pivotIndex = partitionMiddle<T>(tab, left, right);
+
+        // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
+        quickSortMiddle<T>(tab, left, pivotIndex - 1);
+        quickSortMiddle<T>(tab, pivotIndex + 1, right);
+    }
+    //isSorted<T>(tab, right + 1);
+}
+
+template<typename T>
+void Sorting::quickSortRandom(T *tab, int left, int right) {
+    if (left < right) {
+        // Podzial tablicy i znalezienie punkt podziału (pivot)
+        int pivotIndex = partitionRandom<T>(tab, left, right);
+
+        // Sortowanie rekurencyjnie elementów przed pivotem i po pivotem
+        quickSortRandom<T>(tab, left, pivotIndex - 1);
+        quickSortRandom<T>(tab, pivotIndex + 1, right);
     }
     //isSorted<T>(tab, right + 1);
 }

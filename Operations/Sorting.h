@@ -19,9 +19,21 @@ public:
     template<typename T>
     static void shellSortTwo(T* tab, int size);
 
-    // Sortowanie quicksort
+    // Sortowanie quicksort dla lewego pivota
     template<typename T>
-    static void quickSort(T* tab, int low, int high, int pivotType);
+    static void quickSortLeft(T* tab, int low, int high);
+
+    // Sortowanie quicksort dla prawego pivota
+    template<typename T>
+    static void quickSortRight(T* tab, int low, int high);
+
+    // Sortowanie quicksort dla srodkowego pivota
+    template<typename T>
+    static void quickSortMiddle(T* tab, int low, int high);
+
+    // Sortowanie quicksort dla losowego pivota
+    template<typename T>
+    static void quickSortRandom(T* tab, int low, int high);
 
     // Metoda sprawdzająca, czy tablica jest posortowana
     template<typename T>
@@ -32,13 +44,21 @@ public:
     template<typename T>
     static void heapHelp(T* tab, int size, int root);
 
-    // Metoda pomocnicza do ustalenia pivota
+    // Metoda pomocnicza do dzielenia tablicy dla QuickSort z lewym pivotem
     template<typename T>
-    static int pivotPosition(int left, int right, int pivotType);
+    static int partitionLeft(T* tab, int low, int high);
 
-    // Metoda pomocnicza do dzielenia tablicy dla QuickSort
+    // Metoda pomocnicza do dzielenia tablicy dla QuickSort z prawym pivotem
     template<typename T>
-    static int partition(T* tab, int low, int high, int pivotType);
+    static int partitionRight(T* tab, int low, int high);
+
+    // Metoda pomocnicza do dzielenia tablicy dla QuickSort z srodkowym pivotem
+    template<typename T>
+    static int partitionMiddle(T* tab, int low, int high);
+
+    // Metoda pomocnicza do dzielenia tablicy dla QuickSort z losowym pivotem
+    template<typename T>
+    static int partitionRandom(T* tab, int low, int high);
 
 };
 

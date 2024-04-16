@@ -148,22 +148,22 @@ void SimulationSorting<T>::sort(int methodIterator) {
                         break;
                     case 5:
                         start = high_resolution_clock::now();
-                        Sorting::quickSort(dataToSort, 0, size - 1, 0); // Pivot lewy
+                        Sorting::quickSortLeft(dataToSort, 0, size - 1); // Pivot lewy
                         stop = high_resolution_clock::now();
                         break;
                     case 6:
                         start = high_resolution_clock::now();
-                        Sorting::quickSort(dataToSort, 0, size - 1, 1); // Pivot prawy
+                        Sorting::quickSortRight(dataToSort, 0, size - 1); // Pivot prawy
                         stop = high_resolution_clock::now();
                         break;
                     case 7:
                         start = high_resolution_clock::now();
-                        Sorting::quickSort(dataToSort, 0, size - 1, 2); // Pivot środkowy
+                        Sorting::quickSortMiddle(dataToSort, 0, size - 1); // Pivot środkowy
                         stop = high_resolution_clock::now();
                         break;
                     case 8:
                         start = high_resolution_clock::now();
-                        Sorting::quickSort(dataToSort, 0, size - 1, 3); // Pivot losowy
+                        Sorting::quickSortRandom(dataToSort, 0, size - 1); // Pivot losowy
                         stop = high_resolution_clock::now();
                         break;
                     default:

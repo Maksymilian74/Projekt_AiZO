@@ -158,22 +158,22 @@ void TestSorting<T>::sort(int sortingMethod) {
                 break;
             case 5:
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 0); // Pivot lewy
+                Sorting::quickSortLeft(sortedData, 0, getSizeOfTab() - 1); // Pivot lewy
                 stop = high_resolution_clock::now();
                 break;
             case 6:
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 1); // Pivot prawy
+                Sorting::quickSortRight(sortedData, 0, getSizeOfTab() - 1); // Pivot prawy
                 stop = high_resolution_clock::now();
                 break;
             case 7:
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 2); // Pivot środkowy
+                Sorting::quickSortMiddle(sortedData, 0, getSizeOfTab() - 1); // Pivot środkowy
                 stop = high_resolution_clock::now();
                 break;
             case 8:
                 start = high_resolution_clock::now();
-                Sorting::quickSort(sortedData, 0, getSizeOfTab() - 1, 3); // Pivot losowy
+                Sorting::quickSortRandom(sortedData, 0, getSizeOfTab() - 1); // Pivot losowy
                 stop = high_resolution_clock::now();
                 break;
             case 9:
