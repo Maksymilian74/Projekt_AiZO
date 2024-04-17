@@ -15,3 +15,5 @@ add_executable(Projekt_AiZO Main/Main.cpp
         Operations/FillArray.cpp
         Operations/FillArray.h
 )
+
+set(CMAKE_EXE_LINKER_FLAGS "-static")
